@@ -236,17 +236,22 @@ const TimeSlot = ({ time, activities }) => {
               <div key={subTime} className="flex items-start gap-2">
                 {subTime !== "Suggestions" && subTime !== "Notes" && subTime !== "Spécialités" ? (
                   <>
-                    <span className="font-medium text-sm text-gray-600">{subTime}:</span>
-                    {renderSubActivity(subActivity)}
+                    <span className="font-medium text-sm text-gray-600 min-w-[80px]">{subTime}:</span>
+                    <div className="flex-1">
+                      {renderSubActivity(subActivity)}
+                    </div>
                   </>
                 ) : (
-                  <div className="w-full">
-                    <span className="font-medium text-sm text-gray-600">{subTime}:</span>
-                    {renderSubActivity(subActivity)}
+                  <div className="w-full space-y-1">
+                    <span className="font-medium text-sm text-gray-600 block">{subTime}:</span>
+                    <div className="ml-4">
+                      {renderSubActivity(subActivity)}
+                    </div>
                   </div>
                 )}
               </div>
             ))}
+
           </div>
         </div>
       </div>
@@ -704,43 +709,232 @@ fuji: {
         }
     }
 },
-    himeji: {
-        title: "Himeji",
-        days: {
-            21: {
-                "Matin (8h-12h)": "Château Himeji (arrivée tôt recommandée)",
-                "Déjeuner (12h-13h30)": "Restaurant local",
-                "Après-midi (13h30-16h)": "Jardins Koko-en",
-                "Soir (16h-21h)": "Retour Osaka et dîner"
-            }
-        }
-    },
-    nara: {
-        title: "Nara",
-        days: {
-            22: {
-                "Matin (9h-12h)": ["Parc aux daims", "Todai-ji"],
-                "Déjeuner (12h-13h30)": "Restaurant traditionnel",
-                "Après-midi (13h30-17h)": "Kasuga Taisha",
-                "Soir (17h-21h)": "Quartier Naramachi et dîner"
-            }
-        }
-    },
-    tokyo2: {
-        title: "Tokyo Retour",
-        days: {
-            23: {
-                "Matin (9h-12h)": "Shinkansen vers Tokyo",
-                "Déjeuner (12h-13h30)": "Restaurant à la gare",
-                "Après-midi (13h30-18h)": "Shopping libre et derniers achats",
-                "Soir (18h-21h)": "Préparation bagages"
+himeji: {
+    title: "Himeji",
+    days: {
+        21: {
+            "Transport": {
+                "Options": [
+                    "Shinkansen depuis Osaka (JR Pass valide):",
+                    "- Hikari: 30min (meilleure option)",
+                    "- Kodama: 40min (plus d'arrêts)",
+                    "Bus express: 1h15 (1000¥, économique sans JR Pass)"
+                ],
+                "Notes": "Départ depuis Shin-Osaka Station, arrivée à Himeji Station (gare JR)"
             },
-            24: {
-                "Matin (9h-11h)": "Shopping dernière minute",
-                "Midi (11h-12h)": "Départ vers aéroport"
-            }
+            "Matin (8h-12h)": {
+                "8h00": "Départ de Shin-Osaka",
+                "8h30-9h00": "Arrivée et marche vers le château (15min, suivre la grande avenue)",
+                "9h00-12h00": {
+                    "Activités": "Château Himeji (arrivée tôt recommandée)",
+                    "Notes": [
+                        "Entrée château: 1000¥",
+                        "Audio-guide disponible (500¥)",
+                        "Casiers disponibles pour bagages (300¥)"
+                    ]
+                }
+            },
+            "Déjeuner (12h-13h30)": {
+                "Suggestions": [
+                    "Restaurants dans la rue commerçante Miyuki-dori",
+                    "Spécialités: Himeji Oden, Aliments séchés (15-20min à pied)"
+                ]
+            },
+            "Après-midi (13h30-16h)": {
+                "Transport": "5 min à pied depuis le château",
+                "Activités": [
+                    "Jardins Koko-en (entrée 300¥)",
+                    "Option: Billet combiné château + jardins (1040¥)",
+                    "9 jardins différents de style japonais"
+                ]
+            },
+            "Soir (16h-21h)": {
+                "Transport": {
+                    "16h00": "Retour à la gare de Himeji",
+                    "16h30": "Shinkansen vers Shin-Osaka",
+                    "17h00": "Arrivée à Osaka"
+                },
+                "Activités": "Dîner à Osaka (suggestions: quartier de la gare ou Umeda)"
+            },
+            "Quartier": "Himeji Centre-ville (姫路市)",
+            "Stations": [
+                "Himeji Station (JR, Sanyo Line)",
+                "15 min à pied jusqu'au château"
+            ]
         }
     }
+},
+nara: {
+    title: "Nara",
+    days: {
+        22: {
+            "Transport": {
+                "Options": [
+                    "JR: Osaka → Nara (45min, gratuit avec JR Pass)",
+                    "Kintetsu Line: Osaka-Namba → Kintetsu-Nara (35min, plus proche du parc, 560¥)"
+                ],
+                "Notes": "Kintetsu-Nara recommandée car plus proche des sites"
+            },
+            "Matin (9h-12h)": {
+                "Transport": "5-10 min à pied de Kintetsu-Nara Station",
+                "Activités": [
+                    "Parc aux daims (gratuit, sachets de crackers 200¥)",
+                    "Todai-ji (entrée 600¥)",
+                    "Notes: Le Todai-ji abrite le plus grand Buddha en bronze du Japon"
+                ]
+            },
+            "Déjeuner (12h-13h30)": {
+                "Suggestions": [
+                    "Restaurant traditionnel près du parc",
+                    "Spécialités: Kakinoha-zushi (sushi emballé dans des feuilles de kaki)",
+                    "Budget: 1500-2500¥"
+                ]
+            },
+            "Après-midi (13h30-17h)": {
+                "Transport": "15 min à pied à travers le parc",
+                "Activités": {
+                    "Kasuga Taisha": [
+                        "Entrée sanctuaire: 500¥",
+                        "Jardin botanique en option: 500¥",
+                        "Allée des lanternes: gratuit"
+                    ]
+                }
+            },
+            "Soir (17h-21h)": {
+                "Transport": "20 min à pied ou bus local (220¥)",
+                "Activités": [
+                    "Quartier Naramachi (ancien quartier marchand)",
+                    "Boutiques traditionnelles",
+                    "Maisons de saké",
+                    "Dîner dans une ancienne machiya"
+                ]
+            },
+            "Transport retour": {
+                "Options": [
+                    "JR Nara → Osaka (45min)",
+                    "Kintetsu Nara → Osaka-Namba (35min)"
+                ],
+                "Notes": "Dernier train vers 23h00, vérifier les horaires"
+            },
+            "Quartier": "Nara Centre historique (奈良市)",
+            "Stations": [
+                "Kintetsu-Nara Station (Kintetsu Line, recommandée)",
+                "JR Nara Station (JR Line, plus éloignée)"
+            ]
+        }
+    }
+},
+tokyo2: {
+    title: "Tokyo Retour",
+    days: {
+        23: {
+            "Transport": {
+                "Options": [
+                    "Shinkansen depuis Osaka (JR Pass valide):",
+                    "- Nozomi: 2h15 (non couvert par JR Pass, 14,450¥)",
+                    "- Hikari: 2h45 (couvert par JR Pass)",
+                    "- Kodama: 3h15 (couvert par JR Pass, plus d'arrêts)"
+                ],
+                "Notes": "Départ depuis Shin-Osaka Station, arrivée Tokyo Station ou Shinagawa Station"
+            },
+            "Matin (9h-12h)": {
+                "9h00": "Départ de Shin-Osaka",
+                "11h45": "Arrivée à Tokyo Station",
+                "Notes": "Réservation de siège recommandée la veille"
+            },
+            "Déjeuner (12h-13h30)": {
+                "Suggestions": [
+                    "Tokyo Station Ramen Street (sous-sol)",
+                    "Kitchen Street (étage -1)",
+                    "GRANSTA (zone commerciale de la gare)",
+                    "Budget: 1000-2000¥"
+                ]
+            },
+            "Après-midi (13h30-18h)": {
+                "Transport": {
+                    "Options": [
+                        "JR Yamanote Line pour accès zones shopping",
+                        "Metro Tokyo pour zones spécifiques",
+                        "Pass métro 24h disponible (800¥)"
+                    ]
+                },
+                "Suggestions Shopping": {
+                    "Électronique": [
+                        "Akihabara - Yodobashi Camera, Bic Camera",
+                        "Stations: Akihabara (JR/Metro)"
+                    ],
+                    "Mode": [
+                        "Shibuya - Shibuya 109, PARCO",
+                        "Shinjuku - Isetan, Lumine",
+                        "Stations: Shibuya ou Shinjuku (JR/Metro)"
+                    ],
+                    "Souvenirs": [
+                        "Tokyo Station - Character Street",
+                        "Asakusa - Nakamise Shopping Street",
+                        "Stations: Tokyo ou Asakusa (Metro)"
+                    ],
+                    "Tax-Free": [
+                        "Don Quijote (nombreuses locations)",
+                        "Bic Camera (électronique)",
+                        "Uniqlo (vêtements)"
+                    ]
+                }
+            },
+            "Soir (18h-21h)": {
+                "Activités": [
+                    "Préparation bagages",
+                    "Vérification documents de vol",
+                    "Planification trajet aéroport"
+                ],
+                "Notes": "Préparer les achats tax-free pour le contrôle à l'aéroport"
+            },
+            "Quartier": "Selon choix shopping",
+            "Stations": [
+                "Tokyo Station (point central)",
+                "Autres stations selon zones shopping choisies"
+            ]
+        },
+        24: {
+            "Transport": {
+                "Options vers Narita": [
+                    "Narita Express (environ 1h, 3000¥ ou JR Pass)",
+                    "Limousine Bus (1h30, 3100¥)",
+                    "Skyliner (41min, 2570¥ depuis Ueno)"
+                ],
+                "Options vers Haneda": [
+                    "Tokyo Monorail (15min depuis Hamamatsucho, 500¥)",
+                    "Keikyu Line (20min depuis Shinagawa, 300¥)"
+                ],
+                "Notes": "Prévoir 3h avant le vol international"
+            },
+            "Matin (9h-11h)": {
+                "Suggestions Shopping": {
+                    "Zones proches des lignes aéroport": [
+                        "Tokyo Station - Character Street et GRANSTA",
+                        "Ueno - Ameyoko Market (si vol depuis Narita)",
+                        "Shinagawa - Wing Shopping (si vol depuis Haneda)"
+                    ],
+                    "Notes": [
+                        "Vérifier limites bagages",
+                        "Garder reçus tax-free accessibles"
+                    ]
+                }
+            },
+            "Midi (11h-12h)": {
+                "11h00": "Départ vers aéroport selon option choisie",
+                "Suggestions": [
+                    "Bento à emporter pour le voyage (1000-1500¥)",
+                    "Derniers achats aux boutiques d'aéroport"
+                ]
+            },
+            "Quartier": "Selon aéroport de départ",
+            "Stations": [
+                "Pour Narita: Tokyo, Ueno, ou Nippori",
+                "Pour Haneda: Hamamatsucho ou Shinagawa"
+            ]
+        }
+    }
+  }
 };
 
   const practicalInfo = {
