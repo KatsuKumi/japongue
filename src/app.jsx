@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, MapPin, Calendar, Wallet, Phone, Info, Clock  } from 'lucide-react';
+import { ChevronDown, MapPin, Calendar, Wallet, Phone, Info, Clock, Train, Navigation2, Building2 } from 'lucide-react';
 
 const Accordion = ({ children, title, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -84,8 +84,78 @@ const JapanItinerary = () => {
     ]
   };
   
+const TransportInfo = ({ transport }) => {
+  if (!transport) return null;
   
+  if (typeof transport === 'string') {
+    return (
+      <div className="ml-4 flex items-start gap-2 text-gray-600">
+        <Train className="h-4 w-4 mt-1 flex-shrink-0" />
+        <span>{transport}</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="ml-4 flex items-start gap-2">
+      <Train className="h-4 w-4 mt-1 flex-shrink-0 text-gray-600" />
+      <div>
+        {transport.Options && (
+          <div>
+            <span className="font-medium">Options:</span>
+            <ul className="list-disc ml-5 space-y-1">
+              {transport.Options.map((option, index) => (
+                <li key={index}>{option}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        {transport.Notes && (
+          <div className="mt-1 text-gray-600">
+            <span className="italic">{transport.Notes}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const LocationInfo = ({ quartier, stations }) => {
+  if (!quartier && !stations) return null;
+
+  return (
+    <div className="mt-4 space-y-2 border-t pt-3 text-gray-600">
+      {quartier && (
+        <div className="flex items-start gap-2">
+          <Building2 className="h-4 w-4 mt-1 flex-shrink-0" />
+          <span>
+            <span className="font-medium">Quartier: </span>
+            {quartier}
+          </span>
+        </div>
+      )}
+      {stations && (
+        <div className="flex items-start gap-2">
+          <Train className="h-4 w-4 mt-1 flex-shrink-0" />
+          <div>
+            <span className="font-medium">Stations: </span>
+            <ul className="list-disc ml-5 space-y-1">
+              {stations.map((station, index) => (
+                <li key={index}>{station}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
 const TimeSlot = ({ time, activities }) => {
+  if (time === "Transport") {
+    return <TransportInfo transport={activities} />;
+  }
+
   if (typeof activities === 'string') {
     return (
       <div className="ml-4 flex items-start gap-2">
@@ -116,7 +186,35 @@ const TimeSlot = ({ time, activities }) => {
     );
   }
 
-  // Handle nested time slots (sub-schedules)
+  // Handle nested activities with transport
+  if (activities.Transport) {
+    return (
+      <div className="ml-4">
+        <div className="flex items-start gap-2">
+          <Clock className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
+          <div className="space-y-2 w-full">
+            <span className="font-medium">{time}:</span>
+            <TransportInfo transport={activities.Transport} />
+            {activities.Activités && (
+              <div className="ml-4">
+                {Array.isArray(activities.Activités) ? (
+                  <ul className="list-disc ml-5 space-y-1">
+                    {activities.Activités.map((activity, index) => (
+                      <li key={index}>{activity}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <span>{activities.Activités}</span>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle other nested time slots
   return (
     <div className="ml-4">
       <div className="flex items-start gap-2">
@@ -148,11 +246,11 @@ const ItineraryDay = ({ day, content }) => {
         </div>
         <div className="ml-7 text-gray-600">
           {content.Repos || content.Journée}
-          {content.Suggestions && (
+          {(content.Suggestions || content["Suggestions de quartiers"]) && (
             <div className="mt-2">
               <p className="font-medium">Suggestions:</p>
               <ul className="list-disc ml-5">
-                {content.Suggestions.map((suggestion, index) => (
+                {(content.Suggestions || content["Suggestions de quartiers"]).map((suggestion, index) => (
                   <li key={index}>{suggestion}</li>
                 ))}
               </ul>
@@ -171,10 +269,13 @@ const ItineraryDay = ({ day, content }) => {
       </div>
       <div className="space-y-3">
         {Object.entries(content)
-          .filter(([key]) => key !== 'Options' && key !== 'Suggestions')
+          .filter(([key]) => !['Options', 'Suggestions', 'Quartier', 'Stations'].includes(key))
           .map(([time, activities]) => (
             <TimeSlot key={time} time={time} activities={activities} />
           ))}
+        {(content.Quartier || content.Stations) && (
+          <LocationInfo quartier={content.Quartier} stations={content.Stations} />
+        )}
         {content.Options && (
           <div className="ml-4 mt-4">
             <p className="font-medium">Options:</p>
@@ -197,7 +298,7 @@ const ItineraryView = ({ cityData }) => {
         <Accordion 
           key={key} 
           title={city.title}
-          icon={<MapPin className="h-5 w-5" />}
+          icon={<Navigation2 className="h-5 w-5" />}
         >
           <div className="space-y-4">
             {Object.entries(city.days).map(([day, content]) => (
@@ -323,27 +424,77 @@ tokyo1: {
         }
     }
 },
-    fuji: {
-        title: "Mont Fuji & Kawaguchiko",
-        days: {
-            9: {
-                "Matin (8h-11h)": "Départ Tokyo et trajet",
-                "Déjeuner (11h-12h30)": "Restaurant local",
-                "Après-midi (13h-16h)": ["Chureito Pagoda", "Installation ryokan"],
-                "Soir (16h-21h)": ["Onsen avec vue Fuji", "Dîner kaiseki au ryokan"]
+fuji: {
+    title: "Mont Fuji & Kawaguchiko",
+    days: {
+        9: {
+            "Transport": {
+                "Options": [
+                    "Train: Shinjuku → Otsuki → Kawaguchiko (2h, 4000¥ avec Highway Bus, non couvert par JR Pass)",
+                    "Direct Highway Bus: Shinjuku → Kawaguchiko (2h, 2000¥, plus économique)"
+                ],
+                "Notes": "Départ depuis Shinjuku Station (新宿駅) - Bus terminal au 4ème étage du Shinjuku Expressway Bus Terminal"
             },
-            10: {
-                "Matin (9h-12h)": ["Tour du lac", "Télécabine Mont Kachi Kachi"],
-                "Déjeuner (12h-13h30)": "Restaurant avec vue sur le Fuji",
-                "Après-midi (13h30-17h)": "Points de vue Mont Fuji",
-                "Soir (17h-20h)": "Deuxième nuit au ryokan"
+            "Matin (8h-11h)": {
+                "8h00": "Départ de Shinjuku",
+                "10h00": "Arrivée à Kawaguchiko Station",
+                "10h30": "Dépôt des bagages au ryokan si check-in impossible"
             },
-            11: {
-                "Journée": "Journée libre pour activités optionnelles",
-                "Options": ["Randonnée (si saison)", "Guides disponibles", "Musées locaux", "Onsen"]
-            }
+            "Déjeuner (11h-12h30)": "Restaurant local près de la station",
+            "Après-midi (13h-16h)": {
+                "Transport": "Bus local depuis Kawaguchiko Station (10min, 150¥)",
+                "Activités": [
+                    "Chureito Pagoda (prévoir 1h de visite)",
+                    "Retour à Kawaguchiko",
+                    "Installation ryokan"
+                ]
+            },
+            "Soir (16h-21h)": ["Onsen avec vue Fuji", "Dîner kaiseki au ryokan"],
+            "Quartier": "Kawaguchiko (河口湖)",
+            "Stations": ["Kawaguchiko Station (富士急行線)"]
+        },
+        10: {
+            "Transport": "Bus local Red/Green Line disponible (1300¥ pour pass journée)",
+            "Matin (9h-12h)": {
+                "Transport": "Bus depuis le ryokan vers Kachi Kachi Ropeway (15min)",
+                "Activités": [
+                    "Tour du lac en bus (Red Line, arrêts multiples pour photos)",
+                    "Télécabine Mont Kachi Kachi (1000¥ aller-retour)"
+                ]
+            },
+            "Déjeuner (12h-13h30)": "Restaurant avec vue sur le Fuji près du téléphérique",
+            "Après-midi (13h30-17h)": {
+                "Transport": "Green Line Bus Circuit",
+                "Activités": [
+                    "Point de vue Nagasaki Park",
+                    "Point de vue Kawaguchiko Music Forest",
+                    "Point de vue Nord du lac"
+                ]
+            },
+            "Soir (17h-20h)": "Deuxième nuit au ryokan",
+            "Quartier": "Kawaguchiko (河口湖)",
+            "Stations": ["Utilisation des bus locaux - Pass journée recommandé"]
+        },
+        11: {
+            "Journée": "Journée libre pour activités optionnelles",
+            "Options": [
+                "Randonnée au Mont Tenjo (téléphérique + 1h de marche)",
+                "Visite du Kubota Itchiku Art Museum (2000¥)",
+                "Circuit des 5 lacs en bus (3500¥ pour pass 2 jours)",
+                "Onsen Benifuji no Yu (1300¥)"
+            ],
+            "Transport": {
+                "Notes": "Bus Red/Green Line toujours utilisable si pass 2 jours acheté la veille",
+                "Options": ["Location de vélo possible (1500¥/jour) à la station"]
+            },
+            "Quartier": "Kawaguchiko (河口湖)",
+            "Stations": [
+                "Base: Kawaguchiko Station",
+                "Bus locaux desservant tous les points d'intérêt"
+            ]
         }
-    },
+    }
+},
     kyoto: {
         title: "Kyoto",
         days: {
