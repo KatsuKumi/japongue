@@ -151,6 +151,44 @@ const LocationInfo = ({ quartier, stations }) => {
   );
 };
 
+const renderSubActivity = (content) => {
+  // Si c'est une simple chaîne de caractères
+  if (typeof content === 'string') {
+    return <span>{content}</span>;
+  }
+  
+  // Si c'est un tableau
+  if (Array.isArray(content)) {
+    return (
+      <ul className="list-disc ml-5 space-y-1">
+        {content.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    );
+  }
+
+  // Si c'est un objet avec des sous-propriétés
+  return (
+    <div className="space-y-2">
+      {Object.entries(content).map(([key, value]) => (
+        <div key={key}>
+          <span className="font-medium">{key}:</span>
+          {Array.isArray(value) ? (
+            <ul className="list-disc ml-5 space-y-1">
+              {value.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          ) : (
+            <span className="ml-2">{value}</span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const TimeSlot = ({ time, activities }) => {
   if (time === "Transport") {
     return <TransportInfo transport={activities} />;
@@ -186,46 +224,27 @@ const TimeSlot = ({ time, activities }) => {
     );
   }
 
-  // Handle nested activities with transport
-  if (activities.Transport) {
-    return (
-      <div className="ml-4">
-        <div className="flex items-start gap-2">
-          <Clock className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
-          <div className="space-y-2 w-full">
-            <span className="font-medium">{time}:</span>
-            <TransportInfo transport={activities.Transport} />
-            {activities.Activités && (
-              <div className="ml-4">
-                {Array.isArray(activities.Activités) ? (
-                  <ul className="list-disc ml-5 space-y-1">
-                    {activities.Activités.map((activity, index) => (
-                      <li key={index}>{activity}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <span>{activities.Activités}</span>
-                )}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Handle other nested time slots
+  // Handle nested activities
   return (
     <div className="ml-4">
       <div className="flex items-start gap-2">
         <Clock className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
-        <div>
+        <div className="w-full">
           <span className="font-medium">{time}:</span>
-          <div className="ml-4 space-y-2 mt-2">
+          <div className="ml-4 mt-2 space-y-2">
             {Object.entries(activities).map(([subTime, subActivity]) => (
               <div key={subTime} className="flex items-start gap-2">
-                <span className="font-medium text-sm text-gray-600">{subTime}:</span>
-                <span>{subActivity}</span>
+                {subTime !== "Suggestions" && subTime !== "Notes" && subTime !== "Spécialités" ? (
+                  <>
+                    <span className="font-medium text-sm text-gray-600">{subTime}:</span>
+                    {renderSubActivity(subActivity)}
+                  </>
+                ) : (
+                  <div className="w-full">
+                    <span className="font-medium text-sm text-gray-600">{subTime}:</span>
+                    {renderSubActivity(subActivity)}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -251,7 +270,7 @@ const ItineraryDay = ({ day, content }) => {
               <p className="font-medium">Suggestions:</p>
               <ul className="list-disc ml-5">
                 {(content.Suggestions || content["Suggestions de quartiers"]).map((suggestion, index) => (
-                  <li key={index}>{suggestion}</li>
+                  <li key={index}>{suggestion}<br/></li>
                 ))}
               </ul>
             </div>
@@ -529,32 +548,162 @@ fuji: {
         }
     },
     osaka: {
-        title: "Osaka",
-        days: {
-            17: {
-                "Matin (9h-11h)": "Transit et installation",
-                "Déjeuner (11h-12h30)": "Premier essai de street food d'Osaka",
-                "Après-midi (13h-17h)": ["Château d'Osaka", "Parc du château"],
-                "Soir (17h-21h)": "Shinsekai"
+    title: "Osaka",
+    days: {
+        17: {
+            "Transport": {
+                "Options": [
+                    "JR Special Rapid Service: Kyoto → Osaka (30min, gratuit avec JR Pass)",
+                    "Keihan Line: Kyoto → Yodoyabashi (45min, 410¥)"
+                ],
+                "Notes": "Destination finale selon votre hôtel: Osaka Station (JR) ou Umeda (Métro)"
             },
-            18: {
-                "Matin (10h-13h)": "Aquarium Kaiyukan",
-                "Déjeuner (13h-14h30)": "Restaurant avec vue sur la baie",
-                "Après-midi (14h30-17h)": ["Baie d'Osaka", "Kuromon Market"],
-                "Soir (17h-21h)": ["Dotonbori", "Pokemon Café"]
+            "Matin (9h-11h)": {
+                "9h00": "Départ de Kyoto",
+                "9h30-10h00": "Arrivée à Osaka/Umeda",
+                "10h00-11h00": "Installation hôtel ou dépôt bagages"
             },
-            19: {
-                "Matin (9h-12h)": ["Minoh Park", "Cascade de Minoo"],
-                "Déjeuner (12h-13h30)": "Restaurant local Minoh",
-                "Après-midi (13h30-17h)": "Shopping Umeda",
-                "Soir (17h-21h)": "Dotonbori"
+            "Déjeuner (11h-12h30)": {
+                "Transport": "Métro Midosuji Line vers Dotonbori (180¥)",
+                "Activités": "Street food à Dotonbori (budget ~1000-1500¥)",
+                "Spécialités": ["Takoyaki (600¥)", "Kushikatsu (1000¥)"]
             },
-            20: {
-                "Journée": "Journée libre à Osaka",
-                "Suggestions": ["Shopping supplémentaire", "Parcs d'attractions", "Musées"]
-            }
+            "Après-midi (13h-17h)": {
+                "Transport": "Métro vers Tanimachi 4-chome (180¥)",
+                "Activités": [
+                    "Château d'Osaka (entrée 600¥)",
+                    "Parc du château (gratuit)",
+                    "Option: Musée du château (200¥ supplémentaires)"
+                ]
+            },
+            "Soir (17h-21h)": {
+                "Transport": "Métro vers Dobutsuen-mae (180¥)",
+                "Activités": "Shinsekai exploration et dîner",
+                "Suggestions": [
+                    "Tour Tsutenkaku (700¥)",
+                    "Kushikatsu Daruma (restaurant original)"
+                ]
+            },
+            "Quartier": "Umeda (梅田) → Osaka-jo (大阪城) → Shinsekai (新世界)",
+            "Stations": [
+                "Osaka/Umeda Station (JR, Métro)",
+                "Tanimachi 4-chome (Métro, Château)",
+                "Dobutsuen-mae (Métro, Shinsekai)"
+            ]
+        },
+        18: {
+            "Transport": {
+                "Options": [
+                    "Métro + Chuo Line vers Osakako (320¥)",
+                    "Pass journée métro recommandé (800¥)"
+                ]
+            },
+            "Matin (10h-13h)": {
+                "Transport": "Métro vers Osakako Station",
+                "Activités": [
+                    "Aquarium Kaiyukan (2300¥) (Réservation en ligne possible pour éviter la file)"
+                ],
+            },
+            "Déjeuner (13h-14h30)": {
+                "Suggestions": [
+                    "Restaurant Tempozan Marketplace",
+                    "Restaurants avec vue sur la baie (2000-3000¥)"
+                ]
+            },
+            "Après-midi (14h30-17h)": {
+                "Transport": "Métro vers Nipponbashi (180¥)",
+                "Activités": [
+                    "Baie d'Osaka (Option: Santa Maria Cruise 1600¥)",
+                    "Kuromon Market (Marché couvert)"
+                ]
+            },
+            "Soir (17h-21h)": {
+                "Transport": "10 min à pied vers Dotonbori",
+                "Activités": [
+                    "Dotonbori illuminations",
+                    "Pokemon Café (réservation obligatoire)",
+                    "Shopping Shinsaibashi"
+                ]
+            },
+            "Quartier": "Osaka Bay (大阪湾) → Minami (南)",
+            "Stations": [
+                "Osakako Station (Métro, Aquarium)",
+                "Nipponbashi Station (Métro, Marché)",
+                "Namba Station (Métro, Dotonbori)"
+            ]
+        },
+        19: {
+            "Transport": {
+                "Options": [
+                    "Hankyu Line: Umeda → Minoh (30min, 280¥)",
+                    "Express recommandé pour gain de temps"
+                ]
+            },
+            "Matin (9h-12h)": {
+                "9h00": "Départ de Umeda vers Minoh",
+                "Activités": [
+                    "Minoh Park (gratuit)",
+                    "Cascade de Minoo (30min de marche)",
+                    "Spécialité: Momiji tempura (feuilles d'érable frites)"
+                ]
+            },
+            "Déjeuner (12h-13h30)": {
+                "Suggestions": [
+                    "Restaurant local près de la cascade",
+                    "Spécialités Momiji (1000-2000¥)"
+                ]
+            },
+            "Après-midi (13h30-17h)": {
+                "Transport": "Retour vers Umeda",
+                "Activités": [
+                    "Shopping Umeda",
+                    "Grand Front Osaka",
+                    "Umeda Sky Building (1500¥)",
+                    "Hankyu/Daimaru Department Stores"
+                ]
+            },
+            "Soir (17h-21h)": {
+                "Transport": "Métro vers Namba (180¥)",
+                "Activités": "Dotonbori et dîner",
+                "Suggestions": [
+                    "Crabe chez Kani Doraku",
+                    "Gyoza à Chibo",
+                    "Okonomiyaki chez Mizuno"
+                ]
+            },
+            "Quartier": "Minoh (箕面) → Umeda (梅田) → Dotonbori (道頓堀)",
+            "Stations": [
+                "Minoh Station (Hankyu Line)",
+                "Umeda Station (Hub principal)",
+                "Namba Station (Dotonbori)"
+            ]
+        },
+        20: {
+            "Journée": "Journée libre à Osaka",
+            "Suggestions": [
+                "Universal Studios Japan (7800¥, accès via Universal City Station)",
+                "Shopping aux Outlets Rinku Premium (accès via Nankai Line)",
+                "Musée Cup Noodles à Ikeda (500¥)",
+                "Musée des Sciences d'Osaka (600¥)",
+                "Den Den Town (quartier électronique)"
+            ],
+            "Transport": {
+                "Options": [
+                    "Pass journée métro (800¥)",
+                    "Pass Osaka Amazing Pass (2800¥) inclut entrées de nombreux sites",
+                    "Pass ICOCA rechargeable recommandé"
+                ]
+            },
+            "Quartier": "Selon activités choisies",
+            "Stations": [
+                "Universal City (USJ)",
+                "Rinku Town (Outlets)",
+                "Ikeda (Cup Noodles)",
+                "Namba/Den Den Town"
+            ]
         }
-    },
+    }
+},
     himeji: {
         title: "Himeji",
         days: {
