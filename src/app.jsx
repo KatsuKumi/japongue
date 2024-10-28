@@ -86,130 +86,136 @@ const JapanItinerary = () => {
 
   const cityData = {
     tokyo1: {
-      title: "Tokyo Première Partie",
-      days: {
-        1: {
-          "Matin/Après-midi": "Arrivée Narita/Haneda",
-          "Transport": ["Narita Express (JR Pass)", "Limousine Bus (plus reposant)"],
-          "Soir": ["Installation hôtel", "Balade dans le quartier", "Conbini pour essentiels", "Dîner léger local"]
-        },
-        2: {
-          "Matin": ["Tokyo Metropolitan Building", "Shinjuku Gyoen"],
-          "Après-midi": ["Découverte Shinjuku", "Don Quijote"],
-          "Soir": "Memory Lane (Omoide Yokocho)"
-        },
-        3: {
-          "Matin": ["Sanctuaire Sensoji", "Nakamise Shopping Street", "Taiyaki Hiiragi"],
-          "Midi": "Onigiri Asakura Yadoroku",
-          "Après-midi": ["Asahi Building", "Sumida Park", "Balade rivière"],
-          "Soir": ["Skytree", "Solamachi mall"]
-        },
-        4: {
-          "Matin": ["Ueno Park", "Musée National de Tokyo", "Marché Ameyoko"],
-          "Après-midi": ["Kiyosumi Teien", "Akihabara Electric Town"],
-          "Soir": ["Mandarake Complex", "@Home cafe", "Yodobashi Camera"]
-        },
-        5: {
-          "Options": ["TeamLab Planets", "Jardin Hamarikyu", "Croisière Sumida", "Massage/Onsen"]
+        title: "Tokyo Première Partie",
+        days: {
+            1: {
+                "Matin/Après-midi": "Arrivée Narita/Haneda",
+                "Transport": ["Narita Express (JR Pass)", "Limousine Bus (plus reposant)"],
+                "Soir": ["Installation hôtel", "Balade dans le quartier", "Conbini pour essentiels"]
+            },
+            2: {
+                "Matin": ["Tokyo Metropolitan Building", "Shinjuku Gyoen"],
+                "Après-midi": ["Exploration Shinjuku", "Don Quijote"],
+                "Soir": "Memory Lane (Omoide Yokocho)"
+            },
+            3: {
+                "Matin": ["Sanctuaire Sensoji (Asakusa)", "Nakamise Shopping Street"],
+                "Après-midi": ["Asahi Building (Super Dry Hall)", "Sumida Park"],
+                "Soir": ["Skytree", "Solamachi mall"]
+            },
+            4: {
+                "Matin": ["Exploration Shibuya", "Shibuya Sky", "Nintendo Shop"],
+                "Après-midi": ["Harajuku", "Marion Crêpes", "Taiyaki Hiiragi"],
+                "Soir": "Shibuya Yokocho"
+            },
+            5: {
+                "Matin": ["Musée Ghibli (Mitaka)", "Parc Inokashira"],
+                "Après-midi": ["Ikebukuro", "Pokemon Center", "Furifu"],
+                "Soir": "Ebisu Yokocho"
+            },
+            6: {
+                "Matin": ["Ueno Park", "Musée National de Tokyo"],
+                "Après-midi": ["Kiyosumi Teien", "Marché Tsukiji"],
+                "Soir": ["Ginza", "Uniqlo 12 étages", "Starbucks Reserve Roastery"]
+            },
+            7: {
+                "Matin": ["Akihabara Electric Town", "Mandarake Complex"],
+                "Après-midi": ["@Home cafe", "Cat cafe Nyankoto"],
+                "Soir": "Shopping geek Akihabara"
+            }
         }
-      }
     },
     fuji: {
-      title: "Mont Fuji & Kawaguchiko",
-      days: {
-        6: {
-          "Matin": "Départ Tokyo",
-          "Après-midi": ["Chureito Pagoda", "Installation ryokan"],
-          "Soir": "Onsen avec vue Fuji"
-        },
-        7: {
-          "Journée": ["Tour du lac", "Télécabine Mont Kachi Kachi", "Musée Kubota Itchiku"],
-          "Options": ["Randonnée (si saison)", "Guides disponibles"]
-        },
-        8: {
-          "Options": ["Grottes de lave Aokigahara", "Fuji Q Highland", "Randonnées faciles", "Villages traditionnels"]
+        title: "Mont Fuji & Kawaguchiko",
+        days: {
+            8: {
+                "Matin": "Départ Tokyo",
+                "Après-midi": ["Chureito Pagoda", "Installation ryokan"],
+                "Soir": "Onsen avec vue Fuji"
+            },
+            9: {
+                "Journée": ["Tour du lac", "Télécabine Mont Kachi Kachi", "Points de vue Mont Fuji"],
+                "Options": ["Randonnée (si saison)", "Guides disponibles"]
+            }
         }
-      }
     },
     kyoto: {
-      title: "Kyoto",
-      days: {
-        9: {
-          "Matin": "Transit vers Kyoto",
-          "Après-midi": ["Nijo-jo", "Marché Nishiki"],
-          "Soir": "Pontocho"
-        },
-        10: {
-          "Journée": ["Kinkaku-ji", "Temple Ryoan-ji", "Arashiyama", "Forêt de bambous"],
-          "Soir": "Gion exploration"
-        },
-        11: {
-          "Matin": "Fushimi Inari",
-          "Après-midi": ["Ghibli shop", "Kiyomizu-dera"],
-          "Soir": ["Yasaka Shrine", "Maruhachi"]
-        },
-        12: {
-          "Matin": "Katsura Imperial Villa",
-          "Après-midi": ["Philosopher's Path", "Nanzen-ji"],
-          "Soir": ["Issen Yoshoku", "Mososhin"]
-        },
-        13: {
-          "Options": ["Eikan-do", "Tofuku-ji", "Sanjusangendo", "Vélo le long de la rivière"],
-          "Soir": ["Breitz Cafe", "Shopping dernière chance"]
+        title: "Kyoto",
+        days: {
+            10: {
+                "Matin": "Transit vers Kyoto",
+                "Après-midi": ["Nijo-jo", "Marché Nishiki"],
+                "Soir": "Pontocho"
+            },
+            11: {
+                "Journée": ["Kinkaku-ji", "Temple Ryoan-ji", "Arashiyama", "Forêt de bambous"],
+                "Soir": "Gion exploration"
+            },
+            12: {
+                "Matin": "Fushimi Inari-taisha",
+                "Après-midi": ["Ghibli shop (Higashiyama)", "Kiyomizu-dera"],
+                "Soir": "Yasaka Shrine"
+            },
+            13: {
+                "Matin": "Katsura Imperial Villa",
+                "Après-midi": ["Philosopher's Path", "Nanzen-ji"],
+                "Soir": "Gion"
+            }
         }
-      }
     },
     osaka: {
-      title: "Osaka",
-      days: {
-        14: {
-          "Matin": "Transit et installation",
-          "Après-midi": ["Château d'Osaka", "Parc du château"],
-          "Soir": "Shinsekai"
-        },
-        15: {
-          "Journée": ["Aquarium Kaiyukan", "Baie d'Osaka", "Kuromon Market"],
-          "Soir": "Dotonbori"
-        },
-        16: {
-          "Matin": "Minoh Park + Cascade",
-          "Après-midi": ["Pokemon Café", "Shopping Umeda"],
-          "Soir": "Okonomiyaki"
-        },
-        17: {
-          "Matin": "Château Himeji",
-          "Après-midi": "Jardins Koko-en",
-          "Soir": "Retour Osaka + Kushikatsu Daruma"
+        title: "Osaka",
+        days: {
+            14: {
+                "Matin": "Transit et installation",
+                "Après-midi": ["Château d'Osaka", "Parc du château"],
+                "Soir": "Shinsekai"
+            },
+            15: {
+                "Journée": ["Aquarium Kaiyukan", "Baie d'Osaka", "Kuromon Market"],
+                "Soir": ["Dotonbori", "Pokemon Café"]
+            },
+            16: {
+                "Matin": ["Minoh Park", "Cascade de Minoo"],
+                "Après-midi": ["Shopping Umeda"],
+                "Soir": "Dotonbori"
+            }
         }
-      }
+    },
+    himeji: {
+        title: "Himeji",
+        days: {
+            17: {
+                "Matin": "Château Himeji",
+                "Après-midi": "Jardins Koko-en",
+                "Soir": "Retour Osaka"
+            }
+        }
     },
     nara: {
-      title: "Nara",
-      days: {
-        18: {
-          "Journée": ["Parc aux daims", "Todai-ji", "Kasuga Taisha"],
-          "Soir": "Quartier Naramachi"
-        },
-        19: {
-          "Options": ["Mont Yoshino", "Horyuji", "Yakushi-ji", "Musée National"]
+        title: "Nara",
+        days: {
+            18: {
+                "Journée": ["Parc aux daims", "Todai-ji", "Kasuga Taisha"],
+                "Soir": "Quartier Naramachi"
+            }
         }
-      }
     },
     tokyo2: {
-      title: "Tokyo Retour",
-      days: {
-        20: {
-          "Matin": "Shinkansen vers Tokyo",
-          "Après-midi": ["Uniqlo Ginza", "Starbucks Reserve Roastery"],
-          "Soir": "Shibuya Sky"
-        },
-        21: {
-          "Matin": "Shopping dernière minute",
-          "Midi": "Départ vers aéroport"
+        title: "Tokyo Retour",
+        days: {
+            19: {
+                "Matin": "Shinkansen vers Tokyo",
+                "Après-midi": "Shopping libre et derniers achats",
+                "Soir": "Préparation bagages"
+            },
+            20: {
+                "Matin": "Shopping dernière minute",
+                "Midi": "Départ vers aéroport"
+            }
         }
-      }
     }
-  };
+};
 
   const practicalInfo = {
     budget: {
