@@ -1,337 +1,364 @@
-import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { AlertCircle, Clock, Train, Hotel, Sun, Coffee } from 'lucide-react';
+import React, { useState } from 'react';
+import { ChevronDown, MapPin, Calendar, Wallet, Phone, Info } from 'lucide-react';
+
+const Accordion = ({ children, title, icon }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  return (
+    <div className="border rounded-lg mb-4">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full p-4 flex items-center justify-between bg-white hover:bg-gray-50 rounded-lg"
+      >
+        <div className="flex items-center gap-2 text-xl font-semibold">
+          {icon}
+          {title}
+        </div>
+        <ChevronDown className={`transform transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+      {isOpen && <div className="p-4 border-t">{children}</div>}
+    </div>
+  );
+};
+
+const Tab = ({ children, isActive, onClick }) => (
+  <button
+    onClick={onClick}
+    className={`px-4 py-2 rounded-lg ${
+      isActive 
+        ? 'bg-blue-600 text-white' 
+        : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+    }`}
+  >
+    {children}
+  </button>
+);
+
+const Card = ({ title, icon, children }) => (
+  <div className="border rounded-lg p-4 mb-4">
+    {title && (
+      <div className="flex items-center gap-2 text-lg font-semibold mb-4">
+        {icon}
+        {title}
+      </div>
+    )}
+    {children}
+  </div>
+);
+
+const ItineraryDay = ({ day, content }) => (
+  <Card title={`Jour ${day}`}>
+    {Object.entries(content).map(([time, activities], idx) => (
+      <div key={idx} className="mb-4">
+        <div className="font-medium text-blue-600">{time}</div>
+        <ul className="list-disc ml-6">
+          {Array.isArray(activities) ? (
+            activities.map((activity, i) => (
+              <li key={i} className="text-gray-700">{activity}</li>
+            ))
+          ) : (
+            <li className="text-gray-700">{activities}</li>
+          )}
+        </ul>
+      </div>
+    ))}
+  </Card>
+);
 
 const JapanItinerary = () => {
-  const cities = [
-    {
-      name: "Tokyo Arrivée",
-      days: "Jours 1-5",
-      routes: [
-        {
-          day: "Jour 1: Arrivée & Jetlag",
-          spots: [
-            "Arrivée Narita/Haneda",
-            "Installation hôtel",
-            "Balade quartier tranquille",
-            "Conbini essentiels"
-          ],
-          time: "Journée calme",
-          transport: "Narita Express ou Limousine Bus",
-          tips: "Rester éveillé jusqu'à 21h, éviter sieste"
+  const [activeTab, setActiveTab] = useState('preparation');
+
+  const preTrip = {
+    documents: [
+      "Passeport valide 6 mois après retour",
+      "Japan Rail Pass à commander avant départ",
+      "Réservations musée Ghibli / Katsura Villa imprimées",
+      "Copies numériques de tous les documents"
+    ],
+    apps: [
+      "Google Maps (+ télécharger cartes hors-ligne)",
+      "Hyperdia (horaires trains)",
+      "Japan Official Travel App",
+      "Google Translate (+ télécharger pack japonais)",
+      "Application météo fiable"
+    ]
+  };
+
+  const cityData = {
+    tokyo1: {
+      title: "Tokyo Première Partie",
+      days: {
+        1: {
+          "Matin/Après-midi": "Arrivée Narita/Haneda",
+          "Transport": ["Narita Express (JR Pass)", "Limousine Bus (plus reposant)"],
+          "Soir": ["Installation hôtel", "Balade dans le quartier", "Conbini pour essentiels", "Dîner léger local"]
         },
-        {
-          day: "Jour 2: Shinjuku Doux",
-          spots: [
-            "Tokyo Metropolitan Building (vue gratuite)",
-            "Shinjuku Gyoen",
-            "Don Quijote",
-            "Memory Lane (soir)"
-          ],
-          time: "4-5 heures",
-          transport: "JR Yamanote Line",
-          tips: "Parfait pour s'adapter au décalage"
+        2: {
+          "Matin": ["Tokyo Metropolitan Building", "Shinjuku Gyoen"],
+          "Après-midi": ["Découverte Shinjuku", "Don Quijote"],
+          "Soir": "Memory Lane (Omoide Yokocho)"
         },
-        {
-          day: "Jour 3: Asakusa & Skytree",
-          spots: [
-            "Sensoji (6h-17h)",
-            "Nakamise Shopping",
-            "Taiyaki Hiiragi",
-            "Asahi Building",
-            "Skytree (soir)"
-          ],
-          time: "6-7 heures",
-          transport: "Ligne Ginza → Asakusa"
+        3: {
+          "Matin": ["Sanctuaire Sensoji", "Nakamise Shopping Street", "Taiyaki Hiiragi"],
+          "Midi": "Onigiri Asakura Yadoroku",
+          "Après-midi": ["Asahi Building", "Sumida Park", "Balade rivière"],
+          "Soir": ["Skytree", "Solamachi mall"]
         },
-        {
-          day: "Jour 4: Ueno & Akihabara",
-          spots: [
-            "Ueno Park",
-            "Musée National",
-            "Marché Ameyoko",
-            "Kiyosumi Teien",
-            "Akihabara Electric Town"
-          ],
-          time: "7-8 heures",
-          transport: "JR Yamanote Line"
+        4: {
+          "Matin": ["Ueno Park", "Musée National de Tokyo", "Marché Ameyoko"],
+          "Après-midi": ["Kiyosumi Teien", "Akihabara Electric Town"],
+          "Soir": ["Mandarake Complex", "@Home cafe", "Yodobashi Camera"]
         },
-        {
-          day: "Jour 5: Repos & Flexible",
-          spots: [
-            "TeamLab Planets (option)",
-            "Jardin Hamarikyu",
-            "Croisière rivière Sumida",
-            "Massage/Onsen"
-          ],
-          time: "Selon énergie",
-          tips: "Jour parfait pour s'adapter à son rythme"
+        5: {
+          "Options": ["TeamLab Planets", "Jardin Hamarikyu", "Croisière Sumida", "Massage/Onsen"]
         }
+      }
+    },
+    fuji: {
+      title: "Mont Fuji & Kawaguchiko",
+      days: {
+        6: {
+          "Matin": "Départ Tokyo",
+          "Après-midi": ["Chureito Pagoda", "Installation ryokan"],
+          "Soir": "Onsen avec vue Fuji"
+        },
+        7: {
+          "Journée": ["Tour du lac", "Télécabine Mont Kachi Kachi", "Musée Kubota Itchiku"],
+          "Options": ["Randonnée (si saison)", "Guides disponibles"]
+        },
+        8: {
+          "Options": ["Grottes de lave Aokigahara", "Fuji Q Highland", "Randonnées faciles", "Villages traditionnels"]
+        }
+      }
+    },
+    kyoto: {
+      title: "Kyoto",
+      days: {
+        9: {
+          "Matin": "Transit vers Kyoto",
+          "Après-midi": ["Nijo-jo", "Marché Nishiki"],
+          "Soir": "Pontocho"
+        },
+        10: {
+          "Journée": ["Kinkaku-ji", "Temple Ryoan-ji", "Arashiyama", "Forêt de bambous"],
+          "Soir": "Gion exploration"
+        },
+        11: {
+          "Matin": "Fushimi Inari",
+          "Après-midi": ["Ghibli shop", "Kiyomizu-dera"],
+          "Soir": ["Yasaka Shrine", "Maruhachi"]
+        },
+        12: {
+          "Matin": "Katsura Imperial Villa",
+          "Après-midi": ["Philosopher's Path", "Nanzen-ji"],
+          "Soir": ["Issen Yoshoku", "Mososhin"]
+        },
+        13: {
+          "Options": ["Eikan-do", "Tofuku-ji", "Sanjusangendo", "Vélo le long de la rivière"],
+          "Soir": ["Breitz Cafe", "Shopping dernière chance"]
+        }
+      }
+    },
+    osaka: {
+      title: "Osaka",
+      days: {
+        14: {
+          "Matin": "Transit et installation",
+          "Après-midi": ["Château d'Osaka", "Parc du château"],
+          "Soir": "Shinsekai"
+        },
+        15: {
+          "Journée": ["Aquarium Kaiyukan", "Baie d'Osaka", "Kuromon Market"],
+          "Soir": "Dotonbori"
+        },
+        16: {
+          "Matin": "Minoh Park + Cascade",
+          "Après-midi": ["Pokemon Café", "Shopping Umeda"],
+          "Soir": "Okonomiyaki"
+        },
+        17: {
+          "Matin": "Château Himeji",
+          "Après-midi": "Jardins Koko-en",
+          "Soir": "Retour Osaka + Kushikatsu Daruma"
+        }
+      }
+    },
+    nara: {
+      title: "Nara",
+      days: {
+        18: {
+          "Journée": ["Parc aux daims", "Todai-ji", "Kasuga Taisha"],
+          "Soir": "Quartier Naramachi"
+        },
+        19: {
+          "Options": ["Mont Yoshino", "Horyuji", "Yakushi-ji", "Musée National"]
+        }
+      }
+    },
+    tokyo2: {
+      title: "Tokyo Retour",
+      days: {
+        20: {
+          "Matin": "Shinkansen vers Tokyo",
+          "Après-midi": ["Uniqlo Ginza", "Starbucks Reserve Roastery"],
+          "Soir": "Shibuya Sky"
+        },
+        21: {
+          "Matin": "Shopping dernière minute",
+          "Midi": "Départ vers aéroport"
+        }
+      }
+    }
+  };
+
+  const practicalInfo = {
+    budget: {
+      title: "Budget & Paiement",
+      items: [
+        "Retrait 7-Eleven ou Post Office",
+        "Garder du cash (pays très cash)",
+        "IC Card pour transports",
+        "Budget quotidien conseillé :",
+        "- Repas : 3000-5000¥",
+        "- Transport local : 1000¥",
+        "- Activités : 2000-4000¥"
       ]
     },
-    {
-      name: "Mont Fuji",
-      days: "Jours 6-8",
-      routes: [
-        {
-          day: "Jour 6: Route vers Fuji",
-          spots: [
-            "Départ Tokyo",
-            "Chureito Pagoda",
-            "Installation ryokan",
-            "Onsen vue Fuji"
-          ],
-          time: "4-5 heures trajet inclus",
-          transport: "Highway Bus depuis Tokyo Station"
-        },
-        {
-          day: "Jour 7: Kawaguchiko",
-          spots: [
-            "Tour du lac",
-            "Télécabine Mont Kachi Kachi",
-            "Musée Kubota Itchiku"
-          ],
-          time: "6-7 heures",
-          tips: "Meilleure vue du Fuji le matin"
-        },
-        {
-          day: "Jour 8: Activités Fuji",
-          spots: [
-            "Grottes de lave Aokigahara",
-            "Fuji Q Highland",
-            "Randonnées faciles",
-            "Villages traditionnels"
-          ],
-          time: "Selon activités choisies",
-          tips: "Flexible selon météo"
-        }
+    accommodation: {
+      title: "Hébergements recommandés",
+      items: {
+        "Tokyo": ["Près Yamanote Line :", "- Shinjuku", "- Shibuya", "- Ueno", "- Tokyo Station"],
+        "Kyoto": ["Près stations principales :", "- Kyoto Station", "- Downtown (Karasuma)", "- Southern Higashiyama"],
+        "Osaka": ["Zones recommandées :", "- Namba", "- Umeda", "- Shin-Osaka"]
+      }
+    },
+    tips: {
+      title: "Conseils pratiques",
+      items: [
+        "Wi-Fi pocket indispensable",
+        "Adaptateur électrique",
+        "Parapluie portable",
+        "Chaussures confortables",
+        "Convenience stores pour repas rapides",
+        "Codes culturels :",
+        "- Pas de pourboire",
+        "- Silence transports",
+        "- Retirer chaussures",
+        "- Files d'attente ordonnées"
       ]
     },
-    {
-      name: "Kyoto",
-      days: "Jours 9-13",
-      routes: [
-        {
-          day: "Jour 9: Arrivée & Centre",
-          spots: [
-            "Transit vers Kyoto",
-            "Nijo-jo",
-            "Marché Nishiki",
-            "Pontocho (soir)"
-          ],
-          time: "4-5 heures (après trajet)",
-          transport: "Shinkansen depuis Mishima"
-        },
-        {
-          day: "Jour 10: Nord Kyoto",
-          spots: [
-            "Kinkaku-ji",
-            "Temple Ryoan-ji",
-            "Arashiyama",
-            "Forêt de bambous",
-            "Gion (soir)"
-          ],
-          time: "7-8 heures",
-          transport: "Bus Pass recommandé"
-        },
-        {
-          day: "Jour 11: Est Kyoto",
-          spots: [
-            "Fushimi Inari (tôt)",
-            "Ghibli shop",
-            "Kiyomizu-dera",
-            "Yasaka Shrine"
-          ],
-          time: "6-7 heures",
-          tips: "Fushimi Inari avant 7h pour éviter foule"
-        },
-        {
-          day: "Jour 12: Katsura & Gion",
-          spots: [
-            "Katsura Imperial Villa",
-            "Philosopher's Path",
-            "Nanzen-ji",
-            "Dîner Gion"
-          ],
-          time: "6-7 heures",
-          tips: "Réservation Katsura obligatoire"
-        },
-        {
-          day: "Jour 13: Jour Flexible",
-          spots: [
-            "Eikan-do",
-            "Tofuku-ji",
-            "Vélo rivière",
-            "Shopping final"
-          ],
-          time: "Selon choix",
-          tips: "Parfait pour rattraper sites manqués"
-        }
-      ]
-    },
-    {
-      name: "Osaka & Himeji",
-      days: "Jours 14-17",
-      routes: [
-        {
-          day: "Jour 14: Installation",
-          spots: [
-            "Transit installation",
-            "Château d'Osaka",
-            "Parc du château",
-            "Shinsekai"
-          ],
-          time: "5-6 heures",
-          transport: "Osaka Amazing Pass conseillé"
-        },
-        {
-          day: "Jour 15: Sud Osaka",
-          spots: [
-            "Aquarium Kaiyukan",
-            "Baie d'Osaka",
-            "Kuromon Market",
-            "Dotonbori"
-          ],
-          time: "6-7 heures",
-          tips: "Kaiyukan: venir à l'ouverture"
-        },
-        {
-          day: "Jour 16: Nord & Shopping",
-          spots: [
-            "Minoh Park",
-            "Cascade",
-            "Pokemon Café",
-            "Shopping Umeda",
-            "Okonomiyaki"
-          ],
-          time: "7-8 heures",
-          tips: "Réserver Pokemon Café"
-        },
-        {
-          day: "Jour 17: Himeji",
-          spots: [
-            "Château Himeji",
-            "Jardins Koko-en",
-            "Retour Osaka",
-            "Kushikatsu"
-          ],
-          time: "8-9 heures avec trajet",
-          transport: "JR Pass pour Himeji"
-        }
-      ]
-    },
-    {
-      name: "Nara & Retour",
-      days: "Jours 18-21",
-      routes: [
-        {
-          day: "Jour 18: Nara Principale",
-          spots: [
-            "Parc aux daims",
-            "Todai-ji",
-            "Kasuga Taisha",
-            "Naramachi"
-          ],
-          time: "6-7 heures",
-          transport: "JR ou Kintetsu vers Nara"
-        },
-        {
-          day: "Jour 19: Nara Extra",
-          spots: [
-            "Mont Yoshino",
-            "Horyuji",
-            "Yakushi-ji",
-            "Musée National"
-          ],
-          time: "5-6 heures",
-          tips: "Choix selon intérêts"
-        },
-        {
-          day: "Jour 20: Retour Tokyo",
-          spots: [
-            "Shinkansen vers Tokyo",
-            "Uniqlo Ginza",
-            "Starbucks Reserve",
-            "Shibuya Sky"
-          ],
-          time: "4-5 heures (après trajet)",
-          transport: "Shinkansen avec JR Pass"
-        },
-        {
-          day: "Jour 21: Départ",
-          spots: [
-            "Shopping dernière minute",
-            "Départ aéroport"
-          ],
-          time: "Matinée libre",
-          tips: "Prévoir 3h avant vol"
-        }
+    emergency: {
+      title: "Urgences & Santé",
+      items: [
+        "Numéro urgence : 119",
+        "Cliniques anglophones principales",
+        "Pharmacies : Matsumoto Kiyoshi",
+        "Assurance voyage vérifiée"
       ]
     }
-  ];
+  };
 
   return (
-    <Card className="w-full max-w-4xl">
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Train className="w-6 h-6" />
-          Itinéraire Japon 21 Jours
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Tabs defaultValue="Tokyo Arrivée">
-          <TabsList className="grid w-full" style={{ gridTemplateColumns: 'repeat(5, 1fr)' }}>
-            {cities.map((city) => (
-              <TabsTrigger key={city.name} value={city.name}>
-                {city.name}
-                <span className="text-xs ml-1 opacity-75">{city.days}</span>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-          
-          {cities.map((city) => (
-            <TabsContent key={city.name} value={city.name}>
-              <div className="space-y-6">
-                {city.routes.map((route, index) => (
-                  <div key={index} className="bg-gray-50 p-4 rounded-lg">
-                    <h3 className="text-lg font-semibold flex items-center gap-2">
-                      <Sun className="w-5 h-5" />
-                      {route.day}
-                    </h3>
-                    
-                    <div className="mt-3 flex items-center gap-2 text-gray-600">
-                      <Clock className="w-4 h-4" />
-                      <span>{route.time}</span>
-                    </div>
-                    
-                    {route.transport && (
-                      <div className="mt-2 flex items-center gap-2 text-gray-600">
-                        <Train className="w-4 h-4" />
-                        <span>{route.transport}</span>
-                      </div>
-                    )}
-                    
-                    <ul className="list-disc pl-5 mt-3 space-y-1">
-                      {route.spots.map((spot, i) => (
-                        <li key={i}>{spot}</li>
-                      ))}
-                    </ul>
-                    
-                    {route.tips && (
-                      <div className="mt-3 flex items-start gap-2 text-gray-600 bg-blue-50 p-2 rounded">
-                        <AlertCircle className="w-4 h-4 mt-0.5" />
-                        <span>{route.tips}</span>
-                      </div>
-                    )}
-                  </div>
+    <div className="max-w-4xl mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6 text-center">Itinéraire Japon 21 jours</h1>
+      
+      <div className="flex flex-wrap gap-2 mb-6">
+        <Tab
+          isActive={activeTab === 'preparation'}
+          onClick={() => setActiveTab('preparation')}
+        >
+          Préparation
+        </Tab>
+        <Tab
+          isActive={activeTab === 'itinerary'}
+          onClick={() => setActiveTab('itinerary')}
+        >
+          Itinéraire
+        </Tab>
+        <Tab
+          isActive={activeTab === 'practical'}
+          onClick={() => setActiveTab('practical')}
+        >
+          Infos Pratiques
+        </Tab>
+      </div>
+
+      {activeTab === 'preparation' && (
+        <div className="space-y-4">
+          <Card title="Documents Essentiels">
+            <ul className="list-disc ml-6">
+              {preTrip.documents.map((doc, idx) => (
+                <li key={idx} className="text-gray-700">{doc}</li>
+              ))}
+            </ul>
+          </Card>
+
+          <Card title="Applications à installer">
+            <ul className="list-disc ml-6">
+              {preTrip.apps.map((app, idx) => (
+                <li key={idx} className="text-gray-700">{app}</li>
+              ))}
+            </ul>
+          </Card>
+        </div>
+      )}
+
+      {activeTab === 'itinerary' && (
+        <div className="space-y-4">
+          {Object.entries(cityData).map(([key, city]) => (
+            <Accordion 
+              key={key} 
+              title={city.title}
+              icon={<MapPin className="h-5 w-5" />}
+            >
+              <div className="space-y-4">
+                {Object.entries(city.days).map(([day, content]) => (
+                  <ItineraryDay key={day} day={day} content={content} />
                 ))}
               </div>
-            </TabsContent>
+            </Accordion>
           ))}
-        </Tabs>
-      </CardContent>
-    </Card>
+        </div>
+      )}
+
+      {activeTab === 'practical' && (
+        <div className="space-y-4">
+          {Object.entries(practicalInfo).map(([key, section]) => (
+            <Card 
+              key={key}
+              title={section.title}
+              icon={
+                key === 'budget' ? <Wallet className="h-5 w-5" /> :
+                key === 'accommodation' ? <MapPin className="h-5 w-5" /> :
+                key === 'tips' ? <Info className="h-5 w-5" /> :
+                <Phone className="h-5 w-5" />
+              }
+            >
+              {Array.isArray(section.items) ? (
+                <ul className="list-disc ml-6">
+                  {section.items.map((item, idx) => (
+                    <li key={idx} className="text-gray-700">{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="space-y-4">
+                  {Object.entries(section.items).map(([city, items], idx) => (
+                    <div key={idx}>
+                      <h4 className="font-semibold mb-2">{city}</h4>
+                      <ul className="list-disc ml-6">
+                        {items.map((item, i) => (
+                          <li key={i} className="text-gray-700">{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </Card>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 
