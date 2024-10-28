@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, MapPin, Calendar, Wallet, Phone, Info } from 'lucide-react';
+import { ChevronDown, MapPin, Calendar, Wallet, Phone, Info, Clock  } from 'lucide-react';
 
 const Accordion = ({ children, title, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,135 +83,361 @@ const JapanItinerary = () => {
       "Application météo fiable"
     ]
   };
+  
+  
+const TimeSlot = ({ time, activities }) => {
+  if (typeof activities === 'string') {
+    return (
+      <div className="ml-4 flex items-start gap-2">
+        <Clock className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
+        <div>
+          <span className="font-medium">{time}: </span>
+          <span>{activities}</span>
+        </div>
+      </div>
+    );
+  }
 
-  const cityData = {
-    tokyo1: {
-        title: "Tokyo Première Partie",
-        days: {
-            1: {
-                "Matin/Après-midi": "Arrivée Narita/Haneda",
-                "Transport": ["Narita Express (JR Pass)", "Limousine Bus (plus reposant)"],
-                "Soir": ["Installation hôtel", "Balade dans le quartier", "Conbini pour essentiels"]
+  if (Array.isArray(activities)) {
+    return (
+      <div className="ml-4">
+        <div className="flex items-start gap-2">
+          <Clock className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
+          <div>
+            <span className="font-medium">{time}:</span>
+            <ul className="list-disc ml-5 space-y-1">
+              {activities.map((activity, index) => (
+                <li key={index}>{activity}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Handle nested time slots (sub-schedules)
+  return (
+    <div className="ml-4">
+      <div className="flex items-start gap-2">
+        <Clock className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
+        <div>
+          <span className="font-medium">{time}:</span>
+          <div className="ml-4 space-y-2 mt-2">
+            {Object.entries(activities).map(([subTime, subActivity]) => (
+              <div key={subTime} className="flex items-start gap-2">
+                <span className="font-medium text-sm text-gray-600">{subTime}:</span>
+                <span>{subActivity}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ItineraryDay = ({ day, content }) => {
+  // Handle special case for rest/free days
+  if (content.Repos || content.Journée === "Journée libre pour explorer plus tranquillement") {
+    return (
+      <div className="p-4 bg-gray-50 rounded-lg">
+        <div className="flex items-center gap-2 mb-2">
+          <Calendar className="h-5 w-5 text-gray-600" />
+          <h3 className="font-medium">Jour {day}</h3>
+        </div>
+        <div className="ml-7 text-gray-600">
+          {content.Repos || content.Journée}
+          {content.Suggestions && (
+            <div className="mt-2">
+              <p className="font-medium">Suggestions:</p>
+              <ul className="list-disc ml-5">
+                {content.Suggestions.map((suggestion, index) => (
+                  <li key={index}>{suggestion}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-4 bg-gray-50 rounded-lg">
+      <div className="flex items-center gap-2 mb-3">
+        <Calendar className="h-5 w-5 text-gray-600" />
+        <h3 className="font-medium">Jour {day}</h3>
+      </div>
+      <div className="space-y-3">
+        {Object.entries(content)
+          .filter(([key]) => key !== 'Options' && key !== 'Suggestions')
+          .map(([time, activities]) => (
+            <TimeSlot key={time} time={time} activities={activities} />
+          ))}
+        {content.Options && (
+          <div className="ml-4 mt-4">
+            <p className="font-medium">Options:</p>
+            <ul className="list-disc ml-5">
+              {content.Options.map((option, index) => (
+                <li key={index}>{option}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const ItineraryView = ({ cityData }) => {
+  return (
+    <div className="space-y-4">
+      {Object.entries(cityData).map(([key, city]) => (
+        <Accordion 
+          key={key} 
+          title={city.title}
+          icon={<MapPin className="h-5 w-5" />}
+        >
+          <div className="space-y-4">
+            {Object.entries(city.days).map(([day, content]) => (
+              <ItineraryDay key={day} day={day} content={content} />
+            ))}
+          </div>
+        </Accordion>
+      ))}
+    </div>
+  );
+};
+
+
+const cityData = {
+tokyo1: {
+    title: "Tokyo Première Partie",
+    days: {
+        1: {
+            "Matin (7h-12h)": "Arrivée Narita/Haneda",
+            "Transport (12h-14h)": {
+                "Options": [
+                    "Narita Express (1h30, JR Pass) - De Narita Terminal 1 à Shinjuku Station",
+                    "Limousine Bus (2h, plus reposant) - De Narita/Haneda directement à votre hôtel"
+                ],
+                "Notes": "Selon votre hôtel, choisir la station la plus proche (Shinjuku/Shibuya recommandées)"
             },
-            2: {
-                "Matin": ["Tokyo Metropolitan Building", "Shinjuku Gyoen"],
-                "Après-midi": ["Exploration Shinjuku", "Don Quijote"],
-                "Soir": "Memory Lane (Omoide Yokocho)"
+            "Après-midi (14h-17h)": "Check-in hôtel et repos",
+            "Soir (17h-20h)": ["Balade tranquille dans le quartier", "Conbini pour essentiels", "Dîner léger et adaptation au décalage horaire"],
+            "Quartier": "Shinjuku/Shibuya (selon hôtel)",
+        },
+        2: {
+            "Transport": "Base: Shinjuku Station",
+            "Matin (9h-12h)": {
+                "9h-10h30": "Tokyo Metropolitan Building (5 min à pied de Shinjuku Station West Exit)",
+                "10h30-12h": "Shinjuku Gyoen (10 min à pied de Shinjuku Station South Exit)"
             },
-            3: {
-                "Matin": ["Sanctuaire Sensoji (Asakusa)", "Nakamise Shopping Street"],
-                "Après-midi": ["Asahi Building (Super Dry Hall)", "Sumida Park"],
-                "Soir": ["Skytree", "Solamachi mall"]
+            "Déjeuner (12h-13h30)": "Restaurant dans Shinjuku",
+            "Après-midi (13h30-17h)": ["Exploration tranquille de Shinjuku", "Don Quijote (shopping, 7 min de Shinjuku Station East Exit)"],
+            "Soir (18h-21h)": "Memory Lane (Omoide Yokocho, adjacent à Shinjuku Station West Exit)",
+            "Quartier": "Shinjuku (新宿)",
+            "Stations": ["Shinjuku Station (JR, Metro, plusieurs lignes)"]
+        },
+        3: {
+            "Transport": "Départ: Shinjuku → Asakusa (直通線/Direct Line, 30min)",
+            "Matin (8h-12h)": {
+                "8h-10h": "Sanctuaire Sensoji (10 min à pied de Asakusa Station)",
+                "10h-12h": "Nakamise Shopping Street (sur le chemin du temple)"
             },
-            4: {
-                "Matin": ["Exploration Shibuya", "Shibuya Sky", "Nintendo Shop"],
-                "Après-midi": ["Harajuku", "Marion Crêpes", "Taiyaki Hiiragi"],
-                "Soir": "Shibuya Yokocho"
+            "Déjeuner (12h-13h30)": "Restaurant local Asakusa",
+            "Après-midi (13h30-17h)": ["Asahi Building (15 min à pied)", "Promenade Sumida Park (au bord de la rivière)"],
+            "Soir (17h-21h)": ["Skytree (10 min à pied ou 1 station depuis Asakusa)", "Dîner Solamachi mall"],
+            "Quartier": "Asakusa (浅草) → Oshiage (押上)",
+            "Stations": [
+                "Asakusa Station (Metro Ginza Line, Asakusa Line)",
+                "Tokyo Skytree Station (Tobu Skytree Line)"
+            ]
+        },
+        4: {
+            "Transport": "Départ: Asakusa → Shibuya (Metro Ginza Line, 40min)",
+            "Matin (9h-12h)": ["Shibuya Sky (connecté à Shibuya Station)", "Nintendo Shop (Parco, 5 min à pied)"],
+            "Déjeuner (12h-13h30)": "Restaurant dans Shibuya",
+            "Après-midi (13h30-17h)": {
+                "Transport": "Shibuya → Harajuku (JR Yamanote Line, 2min)",
+                "Activités": ["Harajuku exploration (Takeshita Street)", "Marion Crêpes", "Taiyaki Hiiragi"]
             },
-            5: {
-                "Matin": ["Musée Ghibli (Mitaka)", "Parc Inokashira"],
-                "Après-midi": ["Ikebukuro", "Pokemon Center", "Furifu"],
-                "Soir": "Ebisu Yokocho"
+            "Soir (18h-21h)": "Shibuya Yokocho pour le dîner (5 min de Shibuya Station)",
+            "Quartier": "Shibuya (渋谷) → Harajuku (原宿)",
+            "Stations": [
+                "Shibuya Station (JR, Metro, plusieurs lignes)",
+                "Harajuku Station (JR Yamanote Line)"
+            ]
+        },
+        5: {
+            "Transport": "Départ: Shibuya → Mitaka (JR Chuo Line, 30min)",
+            "Matin (10h-13h)": ["Musée Ghibli (navette gratuite depuis Mitaka Station)", "Parc Inokashira (5 min à pied)"],
+            "Déjeuner (13h-14h30)": "Restaurant près du parc",
+            "Après-midi (14h30-18h)": {
+                "Transport": "Mitaka → Ikebukuro (JR Chuo → Yamanote, 25min)",
+                "Activités": ["Ikebukuro exploration", "Pokemon Center (Sunshine City)", "Furifu"]
             },
-            6: {
-                "Matin": ["Ueno Park", "Musée National de Tokyo"],
-                "Après-midi": ["Kiyosumi Teien", "Marché Tsukiji"],
-                "Soir": ["Ginza", "Uniqlo 12 étages", "Starbucks Reserve Roastery"]
+            "Soir (18h-21h)": {
+                "Transport": "Ikebukuro → Ebisu (JR Yamanote Line, 15min)",
+                "Activités": "Ebisu Yokocho"
             },
-            7: {
-                "Matin": ["Akihabara Electric Town", "Mandarake Complex"],
-                "Après-midi": ["@Home cafe", "Cat cafe Nyankoto"],
-                "Soir": "Shopping geek Akihabara"
-            }
+            "Quartier": "Mitaka (三鷹) → Ikebukuro (池袋) → Ebisu (恵比寿)",
+            "Stations": [
+                "Mitaka Station (JR Chuo Line)",
+                "Ikebukuro Station (JR, Metro, plusieurs lignes)",
+                "Ebisu Station (JR Yamanote Line)"
+            ]
+        },
+        6: {
+            "Repos": "Journée libre pour se reposer ou rattraper des activités manquées",
+            "Suggestions de quartiers": ["Shimokitazawa (下北沢) - quartier hippie", "Daikanyama (代官山) - quartier chic", "Nakameguro (中目黒) - quartier trendy"]
+        },
+        7: {
+            "Transport": "Départ: Hotel → Ueno (selon localisation)",
+            "Matin (9h30-12h)": ["Ueno Park", "Musée National de Tokyo (dans le parc)"],
+            "Déjeuner (12h-13h30)": "Restaurant dans Ueno",
+            "Après-midi (13h30-17h)": {
+                "Transport": "Ueno → Kiyosumi-Shirakawa (Metro Hibiya → Hanzomon Line, 20min)",
+                "Activités": ["Kiyosumi Teien", "Marché Tsukiji (15min en métro depuis Kiyosumi)"]
+            },
+            "Soir (17h-21h)": {
+                "Transport": "Tsukiji → Ginza (Metro Hibiya Line, 5min)",
+                "Activités": ["Ginza exploration", "Uniqlo", "Starbucks Reserve Roastery"]
+            },
+            "Quartier": "Ueno (上野) → Kiyosumi (清澄) → Ginza (銀座)",
+            "Stations": [
+                "Ueno Station (JR, Metro)",
+                "Kiyosumi-Shirakawa Station (Metro)",
+                "Ginza Station (Metro, plusieurs lignes)"
+            ]
+        },
+        8: {
+            "Transport": "Départ: Ginza → Akihabara (Metro Hibiya Line, 15min)",
+            "Matin (10h-12h)": "Akihabara Electric Town (sortie Electric Town d'Akihabara Station)",
+            "Déjeuner (12h-13h30)": "Restaurant thématique",
+            "Après-midi (13h30-17h)": ["Mandarake Complex (5 min à pied)", "@Home cafe ou Cat cafe Nyankoto (dans le quartier)"],
+            "Soir (17h-21h)": "Shopping geek Akihabara",
+            "Quartier": "Akihabara (秋葉原)",
+            "Stations": ["Akihabara Station (JR, Metro Hibiya Line)"]
         }
-    },
+    }
+},
     fuji: {
         title: "Mont Fuji & Kawaguchiko",
         days: {
-            8: {
-                "Matin": "Départ Tokyo",
-                "Après-midi": ["Chureito Pagoda", "Installation ryokan"],
-                "Soir": "Onsen avec vue Fuji"
-            },
             9: {
-                "Journée": ["Tour du lac", "Télécabine Mont Kachi Kachi", "Points de vue Mont Fuji"],
-                "Options": ["Randonnée (si saison)", "Guides disponibles"]
+                "Matin (8h-11h)": "Départ Tokyo et trajet",
+                "Déjeuner (11h-12h30)": "Restaurant local",
+                "Après-midi (13h-16h)": ["Chureito Pagoda", "Installation ryokan"],
+                "Soir (16h-21h)": ["Onsen avec vue Fuji", "Dîner kaiseki au ryokan"]
+            },
+            10: {
+                "Matin (9h-12h)": ["Tour du lac", "Télécabine Mont Kachi Kachi"],
+                "Déjeuner (12h-13h30)": "Restaurant avec vue sur le Fuji",
+                "Après-midi (13h30-17h)": "Points de vue Mont Fuji",
+                "Soir (17h-20h)": "Deuxième nuit au ryokan"
+            },
+            11: {
+                "Journée": "Journée libre pour activités optionnelles",
+                "Options": ["Randonnée (si saison)", "Guides disponibles", "Musées locaux", "Onsen"]
             }
         }
     },
     kyoto: {
         title: "Kyoto",
         days: {
-            10: {
-                "Matin": "Transit vers Kyoto",
-                "Après-midi": ["Nijo-jo", "Marché Nishiki"],
-                "Soir": "Pontocho"
-            },
-            11: {
-                "Journée": ["Kinkaku-ji", "Temple Ryoan-ji", "Arashiyama", "Forêt de bambous"],
-                "Soir": "Gion exploration"
-            },
             12: {
-                "Matin": "Fushimi Inari-taisha",
-                "Après-midi": ["Ghibli shop (Higashiyama)", "Kiyomizu-dera"],
-                "Soir": "Yasaka Shrine"
+                "Matin (8h-11h)": "Transit vers Kyoto",
+                "Déjeuner (11h-12h30)": "Restaurant près de la gare",
+                "Après-midi (13h-17h)": ["Nijo-jo", "Marché Nishiki"],
+                "Soir (17h-21h)": "Pontocho"
             },
             13: {
-                "Matin": "Katsura Imperial Villa",
-                "Après-midi": ["Philosopher's Path", "Nanzen-ji"],
-                "Soir": "Gion"
+                "Matin (9h-12h)": ["Kinkaku-ji", "Temple Ryoan-ji"],
+                "Déjeuner (12h-13h30)": "Restaurant local",
+                "Après-midi (13h30-17h)": ["Arashiyama", "Forêt de bambous"],
+                "Soir (17h-21h)": "Gion exploration"
+            },
+            14: {
+                "Matin (7h-11h)": "Fushimi Inari-taisha (tôt pour éviter la foule)",
+                "Déjeuner (11h-12h30)": "Restaurant près du temple",
+                "Après-midi (13h-17h)": ["Ghibli shop", "Kiyomizu-dera"],
+                "Soir (17h-21h)": "Yasaka Shrine"
+            },
+            15: {
+                "Journée": "Journée libre pour explorer plus tranquillement",
+                "Suggestions": ["Retour aux endroits préférés", "Shopping", "Cafés traditionnels"]
+            },
+            16: {
+                "Matin (9h-12h)": "Katsura Imperial Villa (réservation nécessaire)",
+                "Déjeuner (12h-13h30)": "Restaurant traditionnel",
+                "Après-midi (13h30-17h)": ["Philosopher's Path", "Nanzen-ji"],
+                "Soir (17h-21h)": "Gion"
             }
         }
     },
     osaka: {
         title: "Osaka",
         days: {
-            14: {
-                "Matin": "Transit et installation",
-                "Après-midi": ["Château d'Osaka", "Parc du château"],
-                "Soir": "Shinsekai"
+            17: {
+                "Matin (9h-11h)": "Transit et installation",
+                "Déjeuner (11h-12h30)": "Premier essai de street food d'Osaka",
+                "Après-midi (13h-17h)": ["Château d'Osaka", "Parc du château"],
+                "Soir (17h-21h)": "Shinsekai"
             },
-            15: {
-                "Journée": ["Aquarium Kaiyukan", "Baie d'Osaka", "Kuromon Market"],
-                "Soir": ["Dotonbori", "Pokemon Café"]
+            18: {
+                "Matin (10h-13h)": "Aquarium Kaiyukan",
+                "Déjeuner (13h-14h30)": "Restaurant avec vue sur la baie",
+                "Après-midi (14h30-17h)": ["Baie d'Osaka", "Kuromon Market"],
+                "Soir (17h-21h)": ["Dotonbori", "Pokemon Café"]
             },
-            16: {
-                "Matin": ["Minoh Park", "Cascade de Minoo"],
-                "Après-midi": ["Shopping Umeda"],
-                "Soir": "Dotonbori"
+            19: {
+                "Matin (9h-12h)": ["Minoh Park", "Cascade de Minoo"],
+                "Déjeuner (12h-13h30)": "Restaurant local Minoh",
+                "Après-midi (13h30-17h)": "Shopping Umeda",
+                "Soir (17h-21h)": "Dotonbori"
+            },
+            20: {
+                "Journée": "Journée libre à Osaka",
+                "Suggestions": ["Shopping supplémentaire", "Parcs d'attractions", "Musées"]
             }
         }
     },
     himeji: {
         title: "Himeji",
         days: {
-            17: {
-                "Matin": "Château Himeji",
-                "Après-midi": "Jardins Koko-en",
-                "Soir": "Retour Osaka"
+            21: {
+                "Matin (8h-12h)": "Château Himeji (arrivée tôt recommandée)",
+                "Déjeuner (12h-13h30)": "Restaurant local",
+                "Après-midi (13h30-16h)": "Jardins Koko-en",
+                "Soir (16h-21h)": "Retour Osaka et dîner"
             }
         }
     },
     nara: {
         title: "Nara",
         days: {
-            18: {
-                "Journée": ["Parc aux daims", "Todai-ji", "Kasuga Taisha"],
-                "Soir": "Quartier Naramachi"
+            22: {
+                "Matin (9h-12h)": ["Parc aux daims", "Todai-ji"],
+                "Déjeuner (12h-13h30)": "Restaurant traditionnel",
+                "Après-midi (13h30-17h)": "Kasuga Taisha",
+                "Soir (17h-21h)": "Quartier Naramachi et dîner"
             }
         }
     },
     tokyo2: {
         title: "Tokyo Retour",
         days: {
-            19: {
-                "Matin": "Shinkansen vers Tokyo",
-                "Après-midi": "Shopping libre et derniers achats",
-                "Soir": "Préparation bagages"
+            23: {
+                "Matin (9h-12h)": "Shinkansen vers Tokyo",
+                "Déjeuner (12h-13h30)": "Restaurant à la gare",
+                "Après-midi (13h30-18h)": "Shopping libre et derniers achats",
+                "Soir (18h-21h)": "Préparation bagages"
             },
-            20: {
-                "Matin": "Shopping dernière minute",
-                "Midi": "Départ vers aéroport"
+            24: {
+                "Matin (9h-11h)": "Shopping dernière minute",
+                "Midi (11h-12h)": "Départ vers aéroport"
             }
         }
     }
@@ -309,23 +535,7 @@ const JapanItinerary = () => {
         </div>
       )}
 
-      {activeTab === 'itinerary' && (
-        <div className="space-y-4">
-          {Object.entries(cityData).map(([key, city]) => (
-            <Accordion 
-              key={key} 
-              title={city.title}
-              icon={<MapPin className="h-5 w-5" />}
-            >
-              <div className="space-y-4">
-                {Object.entries(city.days).map(([day, content]) => (
-                  <ItineraryDay key={day} day={day} content={content} />
-                ))}
-              </div>
-            </Accordion>
-          ))}
-        </div>
-      )}
+      {activeTab === 'itinerary' && <ItineraryView cityData={cityData} />}
 
       {activeTab === 'practical' && (
         <div className="space-y-4">
