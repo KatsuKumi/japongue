@@ -519,39 +519,148 @@ fuji: {
         }
     }
 },
-    kyoto: {
-        title: "Kyoto",
-        days: {
-            12: {
-                "Matin (8h-11h)": "Transit vers Kyoto",
-                "Déjeuner (11h-12h30)": "Restaurant près de la gare",
-                "Après-midi (13h-17h)": ["Nijo-jo", "Marché Nishiki"],
-                "Soir (17h-21h)": "Pontocho"
+kyoto: {
+    title: "Kyoto",
+    days: {
+        12: {
+            "Transport": {
+                "Options": [
+                    "Shinkansen: Tokyo → Kyoto (2h15, JR Pass valide)",
+                    "Bus de nuit (option économique si pas de JR Pass, 8000¥)"
+                ],
+                "Notes": "Réservation de siège recommandée pour le Shinkansen (gratuit avec JR Pass)"
             },
-            13: {
-                "Matin (9h-12h)": ["Kinkaku-ji", "Temple Ryoan-ji"],
-                "Déjeuner (12h-13h30)": "Restaurant local",
-                "Après-midi (13h30-17h)": ["Arashiyama", "Forêt de bambous"],
-                "Soir (17h-21h)": "Gion exploration"
+            "Matin (8h-11h)": {
+                "8h00": "Départ de Tokyo Station",
+                "10h15": "Arrivée à Kyoto Station",
+                "10h30": "Dépôt des bagages à l'hôtel ou consigne"
             },
-            14: {
-                "Matin (7h-11h)": "Fushimi Inari-taisha (tôt pour éviter la foule)",
-                "Déjeuner (11h-12h30)": "Restaurant près du temple",
-                "Après-midi (13h-17h)": ["Ghibli shop", "Kiyomizu-dera"],
-                "Soir (17h-21h)": "Yasaka Shrine"
+            "Déjeuner (11h-12h30)": "Restaurant près de la gare (niveau 10 de Kyoto Station - vue sur la ville)",
+            "Après-midi (13h-17h)": {
+                "Transport": "Bus 101 depuis Kyoto Station vers Nijojo-mae (220¥ ou pass bus journée 600¥)",
+                "Activités": [
+                    "Nijo-jo (entrée 1000¥)",
+                    "Marché Nishiki (15 min à pied depuis Nijo-jo)"
+                ]
             },
-            15: {
-                "Journée": "Journée libre pour explorer plus tranquillement",
-                "Suggestions": ["Retour aux endroits préférés", "Shopping", "Cafés traditionnels"]
+            "Soir (17h-21h)": "Pontocho (accès depuis station Sanjo ou Gion-Shijo)",
+            "Quartier": "Centre de Kyoto (京都市内)",
+            "Stations": [
+                "Kyoto Station (JR, métro)",
+                "Nijojo-mae Station (métro Tozai Line)",
+                "Sanjo Station (Keihan Line) pour Pontocho"
+            ]
+        },
+        13: {
+            "Transport": {
+                "Matin": "Bus 205 depuis Kyoto Station vers Kinkakuji-michi (230¥)",
+                "Notes": "Pass bus journée recommandé (600¥) pour les multiples trajets"
             },
-            16: {
-                "Matin (9h-12h)": "Katsura Imperial Villa (réservation nécessaire)",
-                "Déjeuner (12h-13h30)": "Restaurant traditionnel",
-                "Après-midi (13h30-17h)": ["Philosopher's Path", "Nanzen-ji"],
-                "Soir (17h-21h)": "Gion"
-            }
+            "Matin (9h-12h)": {
+                "9h00-10h30": "Kinkaku-ji (Temple d'Or - entrée 400¥)",
+                "Transport": "Bus 59 vers Ryoanji (15min)",
+                "10h45-12h00": "Temple Ryoan-ji (entrée 500¥)"
+            },
+            "Déjeuner (12h-13h30)": "Restaurant local près de Ryoan-ji",
+            "Après-midi (13h30-17h)": {
+                "Transport": "Bus 59 puis JR vers Arashiyama (40min total)",
+                "Activités": [
+                    "Arashiyama exploration",
+                    "Forêt de bambous (gratuit)",
+                    "Option: Temple Tenryu-ji (500¥)"
+                ]
+            },
+            "Soir (17h-21h)": {
+                "Transport": "JR vers Kyoto puis métro vers Gion-Shijo",
+                "Activités": "Gion exploration"
+            },
+            "Quartier": "Nord-Ouest → Arashiyama → Gion",
+            "Stations": [
+                "Saga-Arashiyama Station (JR)",
+                "Gion-Shijo Station (Keihan Line)"
+            ]
+        },
+        14: {
+            "Transport": {
+                "Options": [
+                    "JR Nara Line jusqu'à Inari Station (5min, gratuit avec JR Pass)",
+                    "Keihan Line jusqu'à Fushimi Inari (10min, 150¥)"
+                ]
+            },
+            "Matin (7h-11h)": {
+                "7h00": "Départ vers Fushimi Inari",
+                "7h15-11h00": "Fushimi Inari-taisha (gratuit, 2-3h pour montée partielle)"
+            },
+            "Déjeuner (11h-12h30)": "Restaurant près du temple (spécialités Inari Sushi)",
+            "Après-midi (13h-17h)": {
+                "Transport": "Keihan Line vers Kiyomizu-Gojo (20min)",
+                "Activités": [
+                    "Ghibli shop (Kiyomizu-Gojo)",
+                    "Marche vers Kiyomizu-dera (15min en montée)",
+                    "Kiyomizu-dera (entrée 400¥)"
+                ]
+            },
+            "Soir (17h-21h)": {
+                "Transport": "15 min à pied",
+                "Activités": "Yasaka Shrine (gratuit) et rues traditionnelles"
+            },
+            "Quartier": "Fushimi → Higashiyama",
+            "Stations": [
+                "Inari Station (JR)",
+                "Kiyomizu-Gojo Station (Keihan Line)"
+            ]
+        },
+        15: {
+            "Journée": "Journée libre pour explorer plus tranquillement",
+            "Suggestions": [
+                "Shopping à Kawaramachi (地下鉄烏丸線)",
+                "Cafés traditionnels dans Gion",
+                "Nishiki Market en détail",
+                "Musée International du Manga (1000¥)"
+            ],
+            "Transport": {
+                "Options": [
+                    "Pass bus journée (600¥)",
+                    "Pass métro journée (800¥)",
+                    "Vélo en location (1000¥/jour)"
+                ]
+            },
+            "Quartier": "Au choix",
+            "Stations": ["Selon activités choisies"]
+        },
+        16: {
+            "Transport": {
+                "Options": [
+                    "Bus 33 vers Katsura Rikyu-mae (230¥)",
+                    "Taxi recommandé car accès complexe (environ 2000¥)"
+                ],
+                "Notes": "Réservation Katsura Villa obligatoire via l'Imperial Household Agency (gratuit)"
+            },
+            "Matin (9h-12h)": {
+                "9h00": "Katsura Imperial Villa (visite guidée 1h30)",
+                "Transport": "Bus vers Ginkakuji-michi"
+            },
+            "Déjeuner (12h-13h30)": "Restaurant traditionnel secteur Ginkakuji",
+            "Après-midi (13h30-17h)": {
+                "Transport": "À pied le long du Philosopher's Path",
+                "Activités": [
+                    "Philosopher's Path (gratuit, 2km)",
+                    "Nanzen-ji (entrée temple 500¥, jardins 300¥)"
+                ]
+            },
+            "Soir (17h-21h)": {
+                "Transport": "Bus 100 vers Gion",
+                "Activités": "Dîner et exploration finale de Gion"
+            },
+            "Quartier": "Ouest → Higashiyama Nord → Gion",
+            "Stations": [
+                "Katsura Station (Hankyu Line)",
+                "Bus Ginkakuji-michi",
+                "Keihan Sanjo Station pour Gion"
+            ]
         }
-    },
+    }
+},
     osaka: {
     title: "Osaka",
     days: {
