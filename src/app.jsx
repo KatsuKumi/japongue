@@ -525,18 +525,24 @@ kyoto: {
         12: {
             "Transport": {
                 "Options": [
-                    "Shinkansen: Tokyo → Kyoto (2h15, JR Pass valide)",
-                    "Bus de nuit (option économique si pas de JR Pass, 8000¥)"
+                    "Partie 1 - Kawaguchiko → Shinjuku:",
+                    "- Bus Express (2h, 2000¥, premier départ 6h15)",
+                    "- Train via Otsuki (2h, 2500¥)",
+                    "Partie 2 - Tokyo → Kyoto:",
+                    "- Shinkansen (2h15, JR Pass valide)",
+                    "- Bus de jour (8000¥, option économique sans JR Pass)"
                 ],
-                "Notes": "Réservation de siège recommandée pour le Shinkansen (gratuit avec JR Pass)"
+                "Notes": "Réservation Shinkansen recommandée, premier bus Kawaguchiko à 6h15"
             },
-            "Matin (8h-11h)": {
-                "8h00": "Départ de Tokyo Station",
-                "10h15": "Arrivée à Kyoto Station",
-                "10h30": "Dépôt des bagages à l'hôtel ou consigne"
+            "Matin (6h-12h)": {
+                "6h15": "Départ de Kawaguchiko",
+                "8h15": "Arrivée à Shinjuku",
+                "9h00": "Départ de Tokyo Station",
+                "11h15": "Arrivée à Kyoto Station",
+                "11h30": "Dépôt des bagages à l'hôtel ou consigne"
             },
-            "Déjeuner (11h-12h30)": "Restaurant près de la gare (niveau 10 de Kyoto Station - vue sur la ville)",
-            "Après-midi (13h-17h)": {
+            "Déjeuner (12h-13h30)": "Restaurant niveau 10 de Kyoto Station - vue sur la ville",
+            "Après-midi (13h30-17h)": {
                 "Transport": "Bus 101 depuis Kyoto Station vers Nijojo-mae (220¥ ou pass bus journée 600¥)",
                 "Activités": [
                     "Nijo-jo (entrée 1000¥)",
@@ -546,6 +552,8 @@ kyoto: {
             "Soir (17h-21h)": "Pontocho (accès depuis station Sanjo ou Gion-Shijo)",
             "Quartier": "Centre de Kyoto (京都市内)",
             "Stations": [
+                "Shinjuku Station (transit)",
+                "Tokyo Station (départ Shinkansen)",
                 "Kyoto Station (JR, métro)",
                 "Nijojo-mae Station (métro Tozai Line)",
                 "Sanjo Station (Keihan Line) pour Pontocho"
