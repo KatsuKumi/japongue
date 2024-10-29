@@ -436,7 +436,7 @@ const cityData = {
         ],
         "Soir (17h-21h)": [
           "Retour vers Skytree",
-          "Skytree (timing idéal pour coucher de soleil)",
+          "Skytree (timing idéal pour coucher de soleil)f",
           "Dîner Solamachi mall"
         ],
         "Quartier": "Asakusa (浅草) → Oshiage (押上)",
