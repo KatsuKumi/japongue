@@ -456,7 +456,7 @@ fuji: {
                 "Options": [
                     "Train: Shinjuku Station > Kawaguchiko (2h, JR Pass)",
                 ],
-                "Notes": "Départ depuis Shinjuku Station (新宿駅)"
+                "Notes": "Départ depuis Shinjuku Station (新宿駅) Minimum 150€ par personne et par nuit pour avoir la baignoire"
             },
             "Matin (8h-11h)": {
                 "8h00": "Départ de Shinjuku",
