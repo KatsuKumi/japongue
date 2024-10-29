@@ -128,8 +128,8 @@ const TransportInfo = ({ transport }) => {
   );
 };
 
-const LocationInfo = ({ quartier, stations }) => {
-  if (!quartier && !stations) return null;
+const LocationInfo = ({ quartier, stations, budget }) => {
+  if (!quartier && !stations && !budget) return null;
 
   return (
     <div className="mt-4 space-y-2 border-t pt-3 text-gray-600">
@@ -143,6 +143,19 @@ const LocationInfo = ({ quartier, stations }) => {
         </div>
       )}
       {stations && (
+        <div className="flex items-start gap-2">
+          <Train className="h-4 w-4 mt-1 flex-shrink-0" />
+          <div>
+            <span className="font-medium">Stations: </span>
+            <ul className="list-disc ml-5 space-y-1">
+              {stations.map((station, index) => (
+                <li key={index}>{station}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+      {budget && (
         <div className="flex items-start gap-2">
           <Train className="h-4 w-4 mt-1 flex-shrink-0" />
           <div>
@@ -301,12 +314,12 @@ const ItineraryDay = ({ day, content }) => {
       </div>
       <div className="space-y-3">
         {Object.entries(content)
-          .filter(([key]) => !['Options', 'Suggestions', 'Quartier', 'Stations'].includes(key))
+          .filter(([key]) => !['Options', 'Suggestions', 'Quartier', 'Stations', "Budget"].includes(key))
           .map(([time, activities]) => (
             <TimeSlot key={time} time={time} activities={activities} />
           ))}
-        {(content.Quartier || content.Stations) && (
-          <LocationInfo quartier={content.Quartier} stations={content.Stations} />
+        {(content.Quartier || content.Stations || content.Budget) && (
+          <LocationInfo quartier={content.Quartier} stations={content.Stations} Budget={content.Budget} />
         )}
         {content.Options && (
           <div className="ml-4 mt-4">
@@ -345,169 +358,167 @@ const ItineraryView = ({ cityData }) => {
 
 
 const cityData = {
-tokyo1: {
-    title: "Tokyo Première Partie",
-    days: {
-        1: {
-            "Matin (7h-12h)": "Arrivée Narita/Haneda",
-            "Transport (12h-14h)": {
-                "Options": [
-                    "Keisei Skyliner (40 min, plus rapide) - De Narita à Ueno, puis transfert JR",
-                    "Narita Express (1h30, JR Pass) - De Narita Terminal 1 à Shinjuku Station",
-                    "Limousine Bus (2h, plus reposant) - De Narita/Haneda directement à votre hôtel",
-                ],
-                "Notes": [
-                    "Selon votre hôtel, choisir la station la plus proche (Shinjuku/Shibuya recommandées)",
-                    "Activer le JR Pass à l'aéroport si ce n'est pas fait avant",
-                    "Retirer l'argent aux ATM 7-Eleven ou JP Post",
-                    "Option de carte SUICA/PASMO virtuelle pour gagner de la place si le téléphone est compatible"
-                ]
-            },
-            "Après-midi (14h-17h)": [
-                "Check-in hôtel et repos",
-                "Achat carte PASMO/SUICA pour transports locaux (2000¥ conseillé)"
-            ],
-            "Soir (17h-20h)": ["Balade tranquille dans le quartier", "Conbini pour essentiels", "Dîner léger et adaptation au décalage horaire"],
-            "Quartier": "Shinjuku/Shibuya (selon hôtel)",
-            "Budget": {
-                "Transport": "3000-4000¥",
-                "Dîner": "1000-1500¥",
-                "PASMO/SUICA": "2000¥"
-            }
+"tokyo1": {
+    "title": "Tokyo Première Partie",
+    "days": {
+      "1": {
+        "Matin (7h-12h)": "Arrivée Narita/Haneda",
+        "Transport (12h-14h)": {
+          "Options": [
+            "Keisei Skyliner (40 min, plus rapide) - De Narita à Ueno, puis transfert JR",
+            "Narita Express (1h30, JR Pass) - De Narita Terminal 1 à Shinjuku Station",
+            "Limousine Bus (2h, plus reposant) - De Narita/Haneda directement à votre hôtel"
+          ],
+          "Notes": [
+            "Selon votre hôtel, choisir la station la plus proche (Shinjuku/Shibuya recommandées)",
+            "Activer le JR Pass à l'aéroport si ce n'est pas fait avant",
+            "Retirer l'argent aux ATM 7-Eleven ou JP Post",
+            "Option de carte SUICA/PASMO virtuelle pour gagner de la place si le téléphone est compatible",
+            "Chaque voyageur doit avoir sa propre carte SUICA/PASMO"
+          ]
         },
-        2: {
-            "Transport": "Départ depuis hôtel vers Shinjuku Station (5-10min à pied)",
-            "Matin (9h-12h)": {
-                "9h-10h30": "Tokyo Metropolitan Building (5 min à pied de Shinjuku Station West Exit)",
-                "10h30-12h": "Shinjuku Gyoen (10 min à pied)"
-            },
-            "Déjeuner (12h-13h30)": "Restaurant dans Shinjuku",
-            "Après-midi (13h30-17h)": ["Exploration tranquille de Shinjuku", "Don Quijote (shopping)"],
-            "Soir (18h-21h)": "Memory Lane (Omoide Yokocho)",
-            "Quartier": "Shinjuku (新宿)",
-            "Stations": ["Base: Shinjuku Station (JR, Metro)"],
-          
-            "Budget": {
-                "Déjeuner": "1000-1500¥",
-                "Dîner": "2000-3000¥"
-            }
-        },
-        3: {
-            "Transport": "Départ hôtel → Asakusa (Metro direct depuis Shinjuku/Shibuya, 30min)",
-            "Matin (7h-11h)": {  // Horaire avancé
-                "7h-9h": "Sanctuaire Sensoji (moins de monde le matin)",
-                "9h-11h": "Nakamise Shopping Street"
-            },
-            "Déjeuner (11h-12h30)": "Restaurant local Asakusa",
-            "Après-midi (12h30-17h)": [
-                "Option: Croisière Sumida River vers Skytree (720¥)",
-                "Alternative: Asahi Building (15 min à pied)",
-                "Promenade Sumida Park"
-            ],
-            "Soir (17h-21h)": [
-                "Skytree (timing idéal pour coucher de soleil)",
-                "Dîner Solamachi mall"
-            ],
-            "Quartier": "Asakusa (浅草) → Oshiage (押上)",
-            "Stations": [
-                "Asakusa Station (Metro)",
-                "Tokyo Skytree Station"
-            ],
-            "Budget": {
-                "Transport": "800¥ (plus 720¥ si croisière)",
-                "Sensoji": "Gratuit",
-                "Skytree": "3200¥",
-                "Repas": "2000-3000¥/repas"
-            }
-        },
-        4: {
-            "Transport": "Départ hôtel → Shibuya (direct si hôtel Shinjuku, 5min)",
-            "Matin (9h-12h)": ["Shibuya Sky", "Nintendo Shop (Parco)"],
-            "Déjeuner (12h-13h30)": "Restaurant dans Shibuya",
-            "Après-midi (13h30-17h)": {
-                "Transport": "Shibuya → Harajuku (JR, 2min)",
-                "Activités": ["Harajuku exploration (Takeshita Street)", "Marion Crêpes", "Taiyaki Hiiragi"]
-            },
-            "Soir (18h-21h)": "Shibuya Yokocho pour le dîner",
-            "Quartier": "Shibuya (渋谷) → Harajuku (原宿)",
-            "Stations": [
-                "Shibuya Station",
-                "Harajuku Station"
-            ],
-          
-            "Budget": {
-                "Shibuya Sky": "2000¥",
-                "Transport": "800¥",
-                "Repas": "2000-3000¥/repas"
-            }
-        },
-        5: {
-            "Transport": "Départ hôtel → Mitaka (JR Chuo Line direct depuis Shinjuku, 30min)",
-            "Matin (10h-13h)": [
-                "Musée Ghibli (navette depuis Mitaka Station)",
-                "Parc Inokashira"
-            ],
-            "Notes": [
-                "Réservation Ghibli OBLIGATOIRE 3 mois à l'avance",
-                "Prix: 1000¥ adulte",
-                "Site officiel pour réservation: ghibli-museum.jp"
-            ],
-            "Déjeuner (13h-14h30)": "Restaurant près du parc",
-            "Après-midi (14h30-18h)": {
-                "Transport": "Mitaka → Ikebukuro (JR, 25min)",
-                "Activités": ["Ikebukuro exploration", "Pokemon Center", "Furifu"]
-            },
-            "Soir (18h-21h)": {
-                "Transport": "Ikebukuro → Ebisu (JR Yamanote Line, 15min)",
-                "Activités": "Ebisu Yokocho"
-            },
-            "Quartier": "Mitaka (三鷹) → Ikebukuro (池袋) → Ebisu (恵比寿)",
-            "Stations": [
-                "Mitaka Station",
-                "Ikebukuro Station",
-                "Ebisu Station"
-            ],
-          
-            "Budget": {
-                "Musée": "1000¥",
-                "Transport": "1000¥",
-                "Repas": "2000-3000¥/repas"
-            }
-        },
-        6: {
-            "Repos": "Journée libre pour se reposer ou rattraper des activités manquées",
-            "Suggestions de quartiers": ["Shimokitazawa (下北沢)", "Daikanyama (代官山)", "Nakameguro (中目黒)"]
-        },
-        7: {
-            "Transport": "Départ hôtel → Ueno (Metro direct, 25min)",
-            "Matin (9h30-12h)": ["Ueno Park", "Musée National de Tokyo"],
-            "Déjeuner (12h-13h30)": "Restaurant dans Ueno",
-            "Après-midi (13h30-17h)": {
-                "Transport": "Ueno → Kiyosumi-Shirakawa (Metro, 20min)",
-                "Activités": ["Kiyosumi Teien", "Marché Tsukiji"]
-            },
-            "Soir (17h-21h)": {
-                "Transport": "Tsukiji → Ginza (Metro, 5min)",
-                "Activités": ["Ginza exploration", "Uniqlo", "Starbucks Reserve Roastery"]
-            },
-            "Quartier": "Ueno (上野) → Kiyosumi (清澄) → Ginza (銀座)",
-            "Stations": [
-                "Ueno Station",
-                "Kiyosumi-Shirakawa Station",
-                "Ginza Station"
-            ]
-        },
-        8: {
-            "Transport": "Départ hôtel → Akihabara (Metro direct, 20min)",
-            "Matin (10h-12h)": "Akihabara Electric Town",
-            "Déjeuner (12h-13h30)": "Restaurant thématique",
-            "Après-midi (13h30-17h)": ["Mandarake Complex", "@Home cafe ou Cat cafe Nyankoto"],
-            "Soir (17h-21h)": "Shopping geek Akihabara",
-            "Quartier": "Akihabara (秋葉原)",
-            "Stations": ["Akihabara Station"]
+        "Après-midi (14h-17h)": [
+          "Check-in hôtel et repos",
+          "Achat carte PASMO/SUICA pour transports locaux (2000¥ conseillé)"
+        ],
+        "Soir (17h-20h)": [
+          "Balade tranquille dans le quartier",
+          "Conbini pour essentiels",
+          "Dîner léger dans un restaurant proche de l'hôtel (soba, ramen, etc.) et adaptation au décalage horaire"
+        ],
+        "Quartier": "Shinjuku/Shibuya (selon hôtel)",
+        "Budget": {
+          "Transport": "3000-4000¥",
+          "Dîner": "1000-1500¥",
+          "PASMO/SUICA": "2000¥"
         }
+      },
+      "2": {
+        "Transport": "Départ depuis hôtel vers Shinjuku Station (5-10min à pied)",
+        "Matin (9h-12h)": {
+          "9h-10h30": "Tokyo Metropolitan Building (5 min à pied de Shinjuku Station West Exit)",
+          "10h30-12h": "Shinjuku Gyoen (10 min à pied, entrée 500¥)"
+        },
+        "Déjeuner (12h-13h30)": "Restaurant dans Shinjuku",
+        "Après-midi (13h30-17h)": ["Exploration tranquille de Shinjuku", "Don Quijote (shopping)"],
+        "Soir (18h-21h)": "Memory Lane (Omoide Yokocho, prévoir un plan B si bondé)",
+        "Quartier": "Shinjuku (新宿)",
+        "Stations": ["Base: Shinjuku Station (JR, Metro)"],
+        "Budget": {
+          "Déjeuner": "1000-1500¥",
+          "Dîner": "2000-3000¥"
+        }
+      },
+      "3": {
+        "Transport": "Départ hôtel → Asakusa (Metro direct depuis Shinjuku/Shibuya, 30min)",
+        "Matin (7h-11h)": {
+          "7h-9h": "Sanctuaire Sensoji (moins de monde le matin, idéal pour photos au lever du soleil)",
+          "9h-11h": "Nakamise Shopping Street"
+        },
+        "Déjeuner (11h-12h30)": "Restaurant local Asakusa",
+        "Après-midi (12h30-17h)": [
+          "Option: Croisière Sumida River vers Skytree (720¥) ou métro direct si timing serré",
+          "Alternative: Asahi Building (15 min à pied)",
+          "Promenade Sumida Park"
+        ],
+        "Soir (17h-21h)": [
+          "Skytree (timing idéal pour coucher de soleil)",
+          "Dîner Solamachi mall"
+        ],
+        "Quartier": "Asakusa (浅草) → Oshiage (押上)",
+        "Stations": ["Asakusa Station (Metro)", "Tokyo Skytree Station"],
+        "Budget": {
+          "Transport": "800¥ (plus 720¥ si croisière)",
+          "Sensoji": "Gratuit",
+          "Skytree": "3200¥",
+          "Repas": "2000-3000¥/repas"
+        }
+      },
+      "4": {
+        "Transport": "Départ hôtel → Shibuya (direct si hôtel Shinjuku, 5min)",
+        "Matin (9h-12h)": ["Shibuya Sky", "Nintendo Shop (Parco)"],
+        "Déjeuner (12h-13h30)": "Restaurant dans Shibuya",
+        "Après-midi (13h30-17h)": {
+          "Transport": "Shibuya → Harajuku (JR, 2min)",
+          "Activités": ["Harajuku exploration (Takeshita Street, prévoir foule)", "Marion Crêpes", "Taiyaki Hiiragi"]
+        },
+        "Soir (18h-21h)": [
+          "Shibuya Yokocho pour le dîner",
+          "Prévoir des options alternatives si trop bondé"
+        ],
+        "Quartier": "Shibuya (渋谷) → Harajuku (原宿)",
+        "Stations": ["Shibuya Station", "Harajuku Station"],
+        "Budget": {
+          "Shibuya Sky": "2000¥",
+          "Transport": "800¥",
+          "Repas": "2000-3000¥/repas"
+        }
+      },
+      "5": {
+        "Transport": "Départ hôtel → Mitaka (JR Chuo Line direct depuis Shinjuku, 30min)",
+        "Matin (10h-13h)": [
+          "Musée Ghibli (navette depuis Mitaka Station, vérifier les horaires)",
+          "Parc Inokashira"
+        ],
+        "Notes": [
+          "Réservation Ghibli OBLIGATOIRE 3 mois à l'avance",
+          "Prix: 1000¥ adulte",
+          "Site officiel pour réservation: ghibli-museum.jp"
+        ],
+        "Déjeuner (13h-14h30)": "Restaurant près du parc",
+        "Après-midi (14h30-18h)": {
+          "Transport": "Mitaka → Ikebukuro (JR, 25min)",
+          "Activités": ["Ikebukuro exploration", "Pokemon Center", "Furifu"]
+        },
+        "Soir (18h-21h)": {
+          "Transport": "Ikebukuro → Ebisu (JR Yamanote Line, 15min)",
+          "Activités": "Ebisu Yokocho"
+        },
+        "Quartier": "Mitaka (三鷹) → Ikebukuro (池袋) → Ebisu (恵比寿)",
+        "Stations": ["Mitaka Station", "Ikebukuro Station", "Ebisu Station"],
+        "Budget": {
+          "Musée": "1000¥",
+          "Transport": "1000¥",
+          "Repas": "2000-3000¥/repas"
+        }
+      },
+      "6": {
+        "Repos": "Journée libre pour se reposer ou rattraper des activités manquées",
+        "Suggestions de quartiers": [
+          "Shimokitazawa (下北沢) - Explorez les petits cafés et boutiques",
+          "Daikanyama (代官山) - Journée détente avec galeries et cafés",
+          "Nakameguro (中目黒) - Promenade au bord de la rivière"
+        ]
+      },
+      "7": {
+        "Transport": "Départ hôtel → Ueno (Metro direct, 25min)",
+        "Matin (9h30-12h)": ["Ueno Park", "Musée National de Tokyo"],
+        "Déjeuner (12h-13h30)": "Restaurant dans Ueno",
+        "Après-midi (13h30-17h)": {
+          "Transport": "Ueno → Kiyosumi-Shirakawa (Metro, 20min)",
+          "Activités": ["Kiyosumi Teien", "Marché Tsukiji (prévoir tôt pour éviter la foule)"]
+        },
+        "Soir (17h-21h)": {
+          "Transport": "Tsukiji → Ginza (Metro, 5min)",
+          "Activités": ["Ginza exploration", "Uniqlo", "Starbucks Reserve Roastery"]
+        },
+        "Quartier": "Ueno (上野) → Kiyosumi (清澄) → Ginza (銀座)",
+        "Stations": ["Ueno Station", "Kiyosumi-Shirakawa Station", "Ginza Station"]
+      },
+      "8": {
+        "Transport": "Départ hôtel → Akihabara (Metro direct, 20min)",
+        "Matin (10h-12h)": "Akihabara Electric Town",
+        "Déjeuner (12h-13h30)": "Restaurant thématique",
+        "Après-midi (13h30-17h)": [
+          "Mandarake Complex",
+          "@Home cafe ou Cat cafe Nyankoto (réservation recommandée pour @Home cafe)"
+        ],
+        "Soir (17h-21h)": "Shopping geek Akihabara",
+        "Quartier": "Akihabara (秋葉原)",
+        "Stations": ["Akihabara Station"]
+      }
     }
-},
+  },
 fuji: {
     title: "Mont Fuji & Kawaguchiko",
     days: {
