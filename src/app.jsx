@@ -352,13 +352,15 @@ tokyo1: {
             "Matin (7h-12h)": "Arrivée Narita/Haneda",
             "Transport (12h-14h)": {
                 "Options": [
+                    "Keisei Skyliner (40 min, plus rapide) - De Narita à Ueno, puis transfert JR",
                     "Narita Express (1h30, JR Pass) - De Narita Terminal 1 à Shinjuku Station",
-                    "Limousine Bus (2h, plus reposant) - De Narita/Haneda directement à votre hôtel"
+                    "Limousine Bus (2h, plus reposant) - De Narita/Haneda directement à votre hôtel",
                 ],
                 "Notes": [
                     "Selon votre hôtel, choisir la station la plus proche (Shinjuku/Shibuya recommandées)",
                     "Activer le JR Pass à l'aéroport si ce n'est pas fait avant",
-                    "Retirer l'argent aux ATM 7-Eleven ou JP Post"
+                    "Retirer l'argent aux ATM 7-Eleven ou JP Post",
+                    "Option de carte SUICA/PASMO virtuelle pour gagner de la place si le téléphone est compatible"
                 ]
             },
             "Après-midi (14h-17h)": [
@@ -905,7 +907,6 @@ osaka: {
         22: {
             "Journée": "Journée libre à Osaka",
             "Suggestions": [
-                "Universal Studios Japan (7800¥)",
                 "Musée Cup Noodles à Ikeda",
                 "Den Den Town",
                 "Shopping aux Outlets Rinku Premium"
@@ -1049,7 +1050,6 @@ tokyo2: {
     budget: {
       title: "Budget & Paiement",
       items: [
-        "Retrait 7-Eleven ou Post Office",
         "Garder du cash (pays très cash)",
         "IC Card pour transports",
         "Budget quotidien conseillé :",
