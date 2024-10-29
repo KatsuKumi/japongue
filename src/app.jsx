@@ -739,7 +739,13 @@ kyoto: {
             "Stations": [
                 "Inari Station (JR)",
                 "Kiyomizu-Gojo Station (Keihan Line)"
-            ]
+            ],
+            "Budget": {
+              "Transport": "150¥ (Keihan Line) ou gratuit avec JR Pass",
+              "Activités": "400¥ (Kiyomizu-dera)",
+              "Déjeuner": "2000-3000¥",
+              "Dîner": "3000-4000¥"
+            }
         },
         15: {
             "Journée": "Journée libre pour explorer plus tranquillement",
