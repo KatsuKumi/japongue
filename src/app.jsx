@@ -454,10 +454,9 @@ fuji: {
         9: {
             "Transport": {
                 "Options": [
-                    "Train: Shinjuku → Otsuki → Kawaguchiko (2h, 4000¥ avec Highway Bus, non couvert par JR Pass)",
-                    "Direct Highway Bus: Shinjuku → Kawaguchiko (2h, 2000¥, plus économique)"
+                    "Train: Shinjuku Station > Kawaguchiko (2h, JR Pass)",
                 ],
-                "Notes": "Départ depuis Shinjuku Station (新宿駅) - Bus terminal au 4ème étage du Shinjuku Expressway Bus Terminal"
+                "Notes": "Départ depuis Shinjuku Station (新宿駅)"
             },
             "Matin (8h-11h)": {
                 "8h00": "Départ de Shinjuku",
@@ -504,7 +503,6 @@ fuji: {
             "Options": [
                 "Randonnée au Mont Tenjo (téléphérique + 1h de marche)",
                 "Visite du Kubota Itchiku Art Museum (2000¥)",
-                "Circuit des 5 lacs en bus (3500¥ pour pass 2 jours)",
                 "Onsen Benifuji no Yu (1300¥)"
             ],
             "Transport": {
@@ -526,11 +524,9 @@ kyoto: {
             "Transport": {
                 "Options": [
                     "Partie 1 - Kawaguchiko → Shinjuku:",
-                    "- Bus Express (2h, 2000¥, premier départ 6h15)",
-                    "- Train via Otsuki (2h, 2500¥)",
+                    "- Train (2h, 2500¥) (JR pass)",
                     "Partie 2 - Tokyo → Kyoto:",
                     "- Shinkansen (2h15, JR Pass valide)",
-                    "- Bus de jour (8000¥, option économique sans JR Pass)"
                 ],
                 "Notes": "Réservation Shinkansen recommandée, premier bus Kawaguchiko à 6h15"
             },
