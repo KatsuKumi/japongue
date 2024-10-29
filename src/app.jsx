@@ -423,6 +423,18 @@ const cityData = {
         }
       },
       "3": {
+        "Transport": "Départ hôtel → Akihabara (Metro direct, 20min)",
+        "Matin (10h-12h)": "Akihabara Electric Town",
+        "Déjeuner (12h-13h30)": "Restaurant thématique",
+        "Après-midi (13h30-17h)": [
+          "Mandarake Complex",
+          "@Home cafe ou Cat cafe Nyankoto (réservation recommandée pour @Home cafe)"
+        ],
+        "Soir (17h-21h)": "Shopping geek Akihabara",
+        "Quartier": "Akihabara (秋葉原)",
+        "Stations": ["Akihabara Station"]
+      },
+      "4": {
         "Transport": "Départ hôtel → Asakusa -> Shibamata -> Skytree (Metro direct depuis Shinjuku/Shibuya, 30min)",
         "Matin (7h-11h)": {
           "7h-9h": "Sanctuaire Sensoji (moins de monde le matin, idéal pour photos au lever du soleil)",
@@ -448,7 +460,7 @@ const cityData = {
           "Repas": "2000-3000¥/repas"
         }
       },
-      "4": {
+      "5": {
         "Transport": "Départ hôtel → Shibuya (direct si hôtel Shinjuku, 5min)",
         "Matin (9h-12h)": ["Shibuya Sky", "Nintendo Shop (Parco)" , "Yoyogi-kōen"],
         "Déjeuner (12h-13h30)": "Restaurant dans Shibuya",
@@ -468,7 +480,7 @@ const cityData = {
           "Repas": "2000-3000¥/repas"
         }
       },
-      "5": {
+      "6": {
         "Transport": "Départ hôtel → Mitaka (JR Chuo Line direct depuis Shinjuku, 30min)",
         "Matin (10h-13h)": [
           "Musée Ghibli (navette depuis Mitaka Station, vérifier les horaires)",
@@ -495,15 +507,6 @@ const cityData = {
           "Transport": "1000¥",
           "Repas": "2000-3000¥/repas"
         }
-      },
-      "6": {
-        "Repos": "Journée libre pour se reposer ou rattraper des activités manquées",
-        "Suggestions de quartiers": [
-          "Shimokitazawa (下北沢) - Explorez les petits cafés et boutiques",
-          "Daikanyama (代官山) - Journée détente avec galeries et cafés",
-          "Nakameguro (中目黒) - Promenade au bord de la rivière",
-          "Nakano Broadway"
-        ]
       },
       "7": {
           "Transport": "Départ hôtel → Ueno (Metro direct, 25min)",
@@ -548,17 +551,14 @@ const cityData = {
           ]
         },
       "8": {
-        "Transport": "Départ hôtel → Akihabara (Metro direct, 20min)",
-        "Matin (10h-12h)": "Akihabara Electric Town",
-        "Déjeuner (12h-13h30)": "Restaurant thématique",
-        "Après-midi (13h30-17h)": [
-          "Mandarake Complex",
-          "@Home cafe ou Cat cafe Nyankoto (réservation recommandée pour @Home cafe)"
-        ],
-        "Soir (17h-21h)": "Shopping geek Akihabara",
-        "Quartier": "Akihabara (秋葉原)",
-        "Stations": ["Akihabara Station"]
-      }
+        "Repos": "Journée libre pour se reposer ou rattraper des activités manquées",
+        "Suggestions de quartiers": [
+          "Shimokitazawa (下北沢) - Explorez les petits cafés et boutiques",
+          "Daikanyama (代官山) - Journée détente avec galeries et cafés",
+          "Nakameguro (中目黒) - Promenade au bord de la rivière",
+          "Nakano Broadway"
+        ]
+      },
     }
   },
 fuji: {
