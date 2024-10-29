@@ -968,7 +968,7 @@ himeji: {
 tokyo2: {
     title: "Tokyo Retour",
     days: {
-        23: {
+        21: {
             "Transport": {
                 "Options": [
                     "Shinkansen depuis Osaka (JR Pass valide):",
@@ -1039,6 +1039,18 @@ tokyo2: {
                 "Tokyo Station (point central)",
                 "Autres stations selon zones shopping choisies"
             ]
+        },
+      
+        22: {
+              "Journée": "Journée libre à Tokyo",
+              "Quartier": "Au choix",
+              "Stations": ["Selon activités choisies"]
+          },
+
+        23: {
+            "Journée": "Journée libre à Tokyo",
+            "Quartier": "Au choix",
+            "Stations": ["Selon activités choisies"]
         },
         24: {
             "Transport": {
