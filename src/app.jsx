@@ -505,20 +505,47 @@ const cityData = {
         ]
       },
       "7": {
-        "Transport": "Départ hôtel → Ueno (Metro direct, 25min)",
-        "Matin (9h30-12h)": ["Ueno Park", "Musée National de Tokyo"],
-        "Déjeuner (12h-13h30)": "Restaurant dans Ueno",
-        "Après-midi (13h30-17h)": {
-          "Transport": "Ueno → Kiyosumi-Shirakawa (Metro, 20min)",
-          "Activités": ["Kiyosumi Teien", "Marché Tsukiji (prévoir tôt pour éviter la foule)"]
+          "Transport": "Départ hôtel → Ueno (Metro direct, 25min)",
+          "Matin (8h30-11h)": ["Ueno Park", "Musée National de Tokyo (visite courte)"],
+          "Fin de matinée (11h-13h)": {
+            "Transport": "Ueno → Kiyosumi-Shirakawa (Metro, 20min)",
+            "Activités": [
+              "Kiyosumi Teien",
+              "Déjeuner dans le quartier de Kiyosumi (13h)"
+            ]
+          },
+          "Après-midi (14h-17h)": {
+            "Transport": "Kiyosumi → Toyosu (Metro, 15min)",
+            "Activités": [
+              "TeamLab Planets (prévoir 2-3h)",
+              "Notes: Prévoir shorts ou vêtements retroussables"
+            ]
+          },
+          "Soir (17h30-21h)": {
+            "Transport": "Toyosu → Ginza (Metro, 15min)",
+            "Activités": [
+              "Ginza exploration",
+              "Uniqlo",
+              "Starbucks Reserve Roastery"
+            ]
+          },
+          "Quartier": "Ueno (上野) → Kiyosumi (清澄) → Toyosu (豊洲) → Ginza (銀座)",
+          "Stations": ["Ueno Station", "Kiyosumi-Shirakawa Station", "Toyosu Station", "Ginza Station"],
+          "Budget": {
+            "Transport": "1200¥",
+            "TeamLab": "3200¥",
+            "Musée": "1000¥",
+            "Kiyosumi Teien": "400¥",
+            "Repas": "2000-3000¥/repas"
+          },
+          "Notes importantes": [
+            "Démarrer tôt pour profiter de toutes les activités",
+            "Réserver TeamLab Planets à l'avance",
+            "Prévoir des vêtements adaptés pour TeamLab (shorts/retroussables)",
+            "Prendre un sac plastique pour les chaussettes mouillées",
+            "Visite rapide du musée d'Ueno pour tenir le planning"
+          ]
         },
-        "Soir (17h-21h)": {
-          "Transport": "Tsukiji → Ginza (Metro, 5min)",
-          "Activités": ["Ginza exploration", "Uniqlo", "Starbucks Reserve Roastery"]
-        },
-        "Quartier": "Ueno (上野) → Kiyosumi (清澄) → Ginza (銀座)",
-        "Stations": ["Ueno Station", "Kiyosumi-Shirakawa Station", "Ginza Station"]
-      },
       "8": {
         "Transport": "Départ hôtel → Akihabara (Metro direct, 20min)",
         "Matin (10h-12h)": "Akihabara Electric Town",
