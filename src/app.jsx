@@ -99,7 +99,7 @@ const TransportInfo = ({ transport }) => {
   return (
     <div className="ml-4 flex items-start gap-2">
       <Train className="h-4 w-4 mt-1 flex-shrink-0 text-gray-600" />
-      <div>
+      <div className="w-full">
         {transport.Options && (
           <div>
             <span className="font-medium">Options:</span>
@@ -112,7 +112,15 @@ const TransportInfo = ({ transport }) => {
         )}
         {transport.Notes && (
           <div className="mt-1 text-gray-600">
-            <span className="italic">{transport.Notes}</span>
+            {Array.isArray(transport.Notes) ? (
+              <ul className="list-disc ml-5 space-y-1 italic">
+                {transport.Notes.map((note, index) => (
+                  <li key={index}>{note}</li>
+                ))}
+              </ul>
+            ) : (
+              <span className="italic">{transport.Notes}</span>
+            )}
           </div>
         )}
       </div>
@@ -423,11 +431,25 @@ tokyo1: {
             "Stations": [
                 "Shibuya Station",
                 "Harajuku Station"
-            ]
+            ],
+          
+            "Budget": {
+                "Shibuya Sky": "2000¥",
+                "Transport": "800¥",
+                "Repas": "2000-3000¥/repas"
+            }
         },
         5: {
             "Transport": "Départ hôtel → Mitaka (JR Chuo Line direct depuis Shinjuku, 30min)",
-            "Matin (10h-13h)": ["Musée Ghibli (navette depuis Mitaka Station)", "Parc Inokashira"],
+            "Matin (10h-13h)": [
+                "Musée Ghibli (navette depuis Mitaka Station)",
+                "Parc Inokashira"
+            ],
+            "Notes": [
+                "Réservation Ghibli OBLIGATOIRE 3 mois à l'avance",
+                "Prix: 1000¥ adulte",
+                "Site officiel pour réservation: ghibli-museum.jp"
+            ],
             "Déjeuner (13h-14h30)": "Restaurant près du parc",
             "Après-midi (14h30-18h)": {
                 "Transport": "Mitaka → Ikebukuro (JR, 25min)",
@@ -442,7 +464,13 @@ tokyo1: {
                 "Mitaka Station",
                 "Ikebukuro Station",
                 "Ebisu Station"
-            ]
+            ],
+          
+            "Budget": {
+                "Musée": "1000¥",
+                "Transport": "1000¥",
+                "Repas": "2000-3000¥/repas"
+            }
         },
         6: {
             "Repos": "Journée libre pour se reposer ou rattraper des activités manquées",
@@ -486,7 +514,11 @@ fuji: {
                 "Options": [
                     "Train: Shinjuku Station > Kawaguchiko (2h, JR Pass + bus local)",
                 ],
-                "Notes": "Départ depuis Shinjuku Station (新宿駅)"
+                "Notes": [
+                    "Départ depuis Shinjuku Station (新宿駅)",
+                    "Réservation ryokan OBLIGATOIRE plusieurs mois à l'avance",
+                    "Vérifier météo pour visibilité du Mont Fuji"
+                ]
             },
             "Matin (8h-11h)": {
                 "8h00": "Départ de Shinjuku",
@@ -504,10 +536,21 @@ fuji: {
             },
             "Soir (16h-21h)": ["Onsen avec vue Fuji", "Dîner kaiseki au ryokan"],
             "Quartier": "Kawaguchiko (河口湖)",
-            "Stations": ["Kawaguchiko Station"]
+            "Stations": ["Kawaguchiko Station"],
+          
+            "Budget": {
+                "Transport": "4000¥ (si pas JR Pass)",
+                "Ryokan": "20000-30000¥/nuit avec repas",
+                "Bus local": "1500¥ pass journée"
+            }
         },
         10: {
-            "Transport": "Bus local Red/Green Line (1300¥ pour pass journée)",
+            "Transport": {
+                "Options": [
+                    "Bus local Red/Green Line (1300¥ pour pass journée)",
+                    "Possibilité location vélo (1000¥/jour)"
+                ]
+            },
             "Matin (9h-12h)": {
                 "Transport": "Bus vers Kachi Kachi Ropeway",
                 "Activités": [
@@ -529,15 +572,17 @@ fuji: {
             "Stations": ["Utilisation des bus locaux"]
         },
         11: {
-            "Matin (7h-9h)": {
-                "Options": [
-                    "Randonnée matinale Mont Tenjo",
-                    "Photos lever du soleil sur le Fuji"
-                ]
-            },
             "Transport": {
+                "Options": [
+                    "9h00-11h00 : Kawaguchiko → Shinjuku",
+                    "11h00-11h30: Transfert vers Tokyo Station",
+                    "12h00-14h45: Shinkansen vers Kyoto"
+                ],
+                "Notes": "Réserver siège Shinkansen la veille"
+            },
+            "Matin (7h-9h)": {
+                "7h00": "Photos lever du soleil sur le Fuji",
                 "9h00": "Départ pour Kyoto",
-                "Notes": "Train pour Shinjuku puis Shinkansen pour Kyoto"
             },
             "Après-midi": "Arrivée et installation à Kyoto",
             "Soir": "Exploration tranquille quartier de l'hôtel",
@@ -555,7 +600,13 @@ kyoto: {
     days: {
         12: {
             "Transport": {
-                "Notes": "Déjà arrivé la veille, départ depuis l'hôtel"
+              "Options": [
+                    "Bus Pass 1 jour recommandé (600¥)",
+                    "Alternative: Vélo location journée (1000¥)"
+              ],
+                "Notes": [
+                    "Déjà arrivé la veille, départ depuis l'hôtel",
+                ]
             },
             "Matin (9h-12h)": {
                 "Transport": "Bus 101 depuis l'hôtel vers Nijojo-mae",
@@ -613,11 +664,12 @@ kyoto: {
                 "Options": [
                     "JR Nara Line jusqu'à Inari Station (5min, gratuit avec JR Pass)",
                     "Keihan Line jusqu'à Fushimi Inari (10min, 150¥)"
-                ]
+                ],
+                "Notes": "Prévoir eau et snacks, peu de magasins en montant"
             },
             "Matin (7h-11h)": {
-                "7h00": "Départ vers Fushimi Inari",
-                "7h15-11h00": "Fushimi Inari-taisha (gratuit, 2-3h pour montée partielle)"
+                "7h00": "Départ vers Fushimi Inari (moins de monde)",
+                "7h15-11h00": "Fushimi Inari-taisha (gratuit, 2-3h pour montée partielle)",
             },
             "Déjeuner (11h-12h30)": "Restaurant près du temple (spécialités Inari Sushi)",
             "Après-midi (13h-17h)": {
@@ -728,6 +780,10 @@ osaka: {
                 "Options": [
                     "Métro + Chuo Line vers Osakako (320¥)",
                     "Pass journée métro recommandé (800¥)"
+                ],
+                "Notes": [
+                    "Réservation en ligne Kaiyukan recommandée",
+                    "Pokemon Café: Réservation OBLIGATOIRE 3 mois avant"
                 ]
             },
             "Matin (10h-13h)": {
@@ -877,7 +933,12 @@ tokyo2: {
                     "- Hikari: 2h45 (couvert par JR Pass)",
                     "- Kodama: 3h15 (couvert par JR Pass, plus d'arrêts)"
                 ],
-                "Notes": "Départ depuis Shin-Osaka Station, arrivée Tokyo Station ou Shinagawa Station"
+              
+                "Notes": [
+                    "Service Takkyubin pour envoi bagages à l'aéroport (1500-2000¥/bagage)",
+                    "Délai 24h pour Narita, même jour possible pour Haneda",
+                  "  Départ depuis Shin-Osaka Station, arrivée Tokyo Station ou Shinagawa Station"
+                ]
             },
             "Matin (9h-12h)": {
                 "9h00": "Départ de Shin-Osaka",
@@ -947,7 +1008,12 @@ tokyo2: {
                     "Tokyo Monorail (15min depuis Hamamatsucho, 500¥)",
                     "Keikyu Line (20min depuis Shinagawa, 300¥)"
                 ],
-                "Notes": "Prévoir 3h avant le vol international"
+              "Notes": [
+                "Prévoir 3h avant le vol international",
+                "Garder reçus Tax-Free accessibles dans bagage cabine",
+                "Montant minimum Tax-Free: 5000¥ par magasin",
+                "Passeport nécessaire pour achats Tax-Free"
+              ] 
             },
             "Matin (9h-11h)": {
                 "Suggestions Shopping": {
