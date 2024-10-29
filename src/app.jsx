@@ -687,7 +687,8 @@ kyoto: {
                 "Transport": "À pied dans le quartier",
                 "Activités": [
                     "Exploration du marché Nishiki",
-                    "Boutiques traditionnelles"
+                    "Boutiques traditionnelles",
+                    "Kobe ?"
                 ]
             },
             "Soir (17h-21h)": "Pontocho",
