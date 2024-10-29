@@ -860,155 +860,111 @@ himeji: {
         }
     }
 },
-osaka: {
-    title: "Osaka",
-    days: {
-        18: {
-            "Transport": {
-                "Options": [
-                    "Métro + Chuo Line vers Osakako (320¥)",
-                    "Pass journée métro recommandé (800¥)"
+  "osaka": {
+        "title": "Osaka",
+        "days": {
+            "18": {
+                "Transport": {
+                    "Options": [
+                        "Pass journée métro recommandé (800¥)"
+                    ]
+                },
+                "Matin (9h-12h)": {
+                    "Transport": "Métro vers Tanimachi 4-chome",
+                    "Activités": [
+                        "Château d'Osaka (entrée 600¥)",
+                        "Parc du château",
+                        "Option: Musée du château"
+                    ]
+                },
+                "Déjeuner (12h-13h30)": "Restaurant près du château",
+                "Après-midi (14h-17h)": {
+                    "Transport": "Métro vers Nipponbashi",
+                    "Activités": [
+                        "Kuromon Market (marché couvert traditionnel)",
+                        "Den Den Town (quartier électronique)"
+                    ]
+                },
+                "Soir (17h-21h)": {
+                    "Transport": "10 min à pied vers Dotonbori",
+                    "Activités": [
+                        "Dotonbori illuminations",
+                        "Pokemon Café (réservation obligatoire)",
+                        "Shopping Shinsaibashi"
+                    ]
+                },
+                "Quartier": "Osaka-jo (大阪城) → Minami (南)",
+                "Stations": [
+                    "Tanimachi 4-chome Station",
+                    "Nipponbashi Station",
+                    "Namba Station"
+                ]
+            },
+            "19": {
+                "Transport": {
+                    "Options": [
+                        "Hankyu Line: Umeda → Minoh (30min, 280¥)",
+                        "Express recommandé pour gain de temps"
+                    ]
+                },
+                "Matin (9h-12h)": {
+                    "9h00": "Départ vers Minoh",
+                    "Activités": [
+                        "Minoh Park",
+                        "Cascade de Minoo",
+                        "Spécialité: Momiji tempura"
+                    ]
+                },
+                "Déjeuner (12h-13h30)": "Restaurant local près de la cascade",
+                "Après-midi (13h30-17h)": {
+                    "Transport": "Métro vers Dobutsuen-mae",
+                    "Activités": [
+                        "Shinsekai exploration",
+                        "Tour Tsutenkaku (700¥)"
+                    ]
+                },
+                "Soir (17h-21h)": {
+                    "Activités": [
+                        "Kushikatsu Daruma",
+                        "Exploration nocturne de Shinsekai"
+                    ],
+                    "Notes": "Quartier animé le soir, nombreux restaurants locaux"
+                },
+                "Quartier": "Minoh (箕面) → Shinsekai (新世界)",
+                "Stations": [
+                    "Minoh Station",
+                    "Dobutsuen-mae Station"
+                ]
+            },
+            "20": {
+                "Transport": {
+                    "Options": [
+                        "Train direct vers Nara (45min)",
+                        "Kintetsu Line recommandée"
+                    ]
+                },
+                "Matin (9h-12h)": {
+                    "Transport": "Départ hôtel → Nara",
+                    "Activités": [
+                        "Parc aux daims",
+                        "Todai-ji (entrée 600¥)"
+                    ]
+                },
+                "Déjeuner (12h-13h30)": "Restaurant près du parc",
+                "Après-midi (13h30-17h)": [
+                    "Kasuga Taisha",
+                    "Naramachi",
+                    "Shopping souvenirs traditionnels"
                 ],
-                "Notes": [
-                    "Réservation en ligne Kaiyukan recommandée",
-                    "Pokemon Café: Réservation OBLIGATOIRE 3 mois avant"
-                ]
-            },
-            "Matin (10h-13h)": {
-                "Transport": "Métro depuis hôtel vers Osakako Station",
-                "Activités": [
-                    "Aquarium Kaiyukan (2300¥) (Réservation en ligne possible pour éviter la file)"
-                ],
-            },
-            "Déjeuner (13h-14h30)": {
-                "Suggestions": [
-                    "Restaurant Tempozan Marketplace",
-                    "Restaurants avec vue sur la baie (2000-3000¥)"
-                ]
-            },
-            "Après-midi (14h30-17h)": {
-                "Transport": "Métro vers Nipponbashi",
-                "Activités": [
-                    "Baie d'Osaka (Option: Santa Maria Cruise 1600¥)",
-                    "Kuromon Market"
-                ]
-            },
-            "Soir (17h-21h)": {
-                "Transport": "10 min à pied vers Dotonbori",
-                "Activités": [
-                    "Dotonbori illuminations",
-                    "Pokemon Café (réservation obligatoire)",
-                    "Shopping Shinsaibashi"
-                ]
-            },
-            "Quartier": "Osaka Bay (大阪湾) → Minami (南)",
-            "Stations": [
-                "Osakako Station",
-                "Nipponbashi Station",
-                "Namba Station"
-            ]
-        },
-        19: {
-            "Transport": {
-                "Options": [
-                    "Hankyu Line: Umeda → Minoh (30min, 280¥)",
-                    "Express recommandé pour gain de temps"
-                ]
-            },
-            "Matin (9h-12h)": {
-                "9h00": "Départ vers Minoh",
-                "Activités": [
-                    "Minoh Park",
-                    "Cascade de Minoo",
-                    "Spécialité: Momiji tempura"
-                ]
-            },
-            "Déjeuner (12h-13h30)": "Restaurant local près de la cascade",
-            "Après-midi (13h30-17h)": {
-                "Transport": "Retour vers Umeda",
-                "Activités": [
-                    "Shopping Umeda",
-                    "Grand Front Osaka",
-                    "Umeda Sky Building (1500¥)"
-                ]
-            },
-            "Soir (17h-21h)": {
-                "Transport": "Métro vers Namba",
-                "Activités": "Dotonbori et dîner",
-                "Suggestions": ["Crabe chez Kani Doraku", "Okonomiyaki chez Mizuno"]
-            },
-            "Quartier": "Minoh (箕面) → Umeda (梅田)",
-            "Stations": ["Minoh Station", "Umeda Station"]
-        },
-        20: {
-            "Transport": {
-                "Options": [
-                    "Métro vers Tanimachi 4-chome (180¥)",
-                    "Pass journée métro recommandé (800¥)"
-                ]
-            },
-            "Matin (9h-12h)": [
-                "Château d'Osaka (entrée 600¥)",
-                "Parc du château",
-                "Option: Musée du château"
-            ],
-            "Déjeuner (12h-13h30)": "Restaurant près du château",
-            "Après-midi (13h30-17h)": {
-                "Transport": "Métro vers Dobutsuen-mae",
-                "Activités": [
-                    "Shinsekai exploration",
-                    "Tour Tsutenkaku (700¥)"
-                ]
-            },
-            "Soir (17h-21h)": "Kushikatsu Daruma et exploration Shinsekai",
-            "Quartier": "Osaka-jo (大阪城) → Shinsekai (新世界)",
-            "Stations": [
-                "Tanimachi 4-chome Station",
-                "Dobutsuen-mae Station"
-            ]
-        },
-        21: {
-            "Transport": {
-                "Options": [
-                    "Train direct vers Nara (45min)",
-                    "Kintetsu Line recommandée"
-                ]
-            },
-            "Matin (9h-12h)": {
-                "Transport": "Départ hôtel → Nara",
-                "Activités": [
-                    "Parc aux daims",
-                    "Todai-ji (entrée 600¥)"
-                ]
-            },
-            "Déjeuner (12h-13h30)": "Restaurant près du parc",
-            "Après-midi (13h30-17h)": ["Kasuga Taisha", "Naramachi"],
-            "Soir (17h-21h)": {
-                "Transport": "Retour à Osaka",
-                "Activités": "Dîner et shopping Shinsaibashi"
-            },
-            "Quartier": "Excursion Nara",
-            "Stations": ["Kintetsu-Nara Station"]
-        },
-        22: {
-            "Journée": "Journée libre à Osaka",
-            "Suggestions": [
-                "Musée Cup Noodles à Ikeda",
-                "Den Den Town",
-                "Shopping aux Outlets Rinku Premium"
-            ],
-            "Transport": {
-                "Options": [
-                    "Pass journée métro (800¥)",
-                    "Pass Osaka Amazing (2800¥)",
-                ],
-                "Soir": "Shinkansen vers Tokyo"
-            },
-            "Quartier": "Au choix",
-            "Stations": ["Selon activités choisies"]
+                "Soir": {
+                    "Transport": "Retour à Osaka puis Shinkansen vers Tokyo",
+                    "Notes": "Possibilité de dîner à Nara avant le départ"
+                },
+                "Quartier": "Excursion Nara",
+                "Stations": ["Kintetsu-Nara Station"]
+            }
         }
-    }
-},
+    },
 tokyo2: {
     title: "Tokyo Retour",
     days: {
