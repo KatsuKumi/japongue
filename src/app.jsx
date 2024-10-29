@@ -231,7 +231,12 @@ const TimeSlot = ({ time, activities }) => {
     return (
       <div className="ml-4">
         <div className="flex items-start gap-2">
-          <Clock className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
+          {/* Condition pour l'icône en fonction de subTime */}
+          {time === "Notes" ? (
+            <NotebookPen className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
+          ) : (
+            <Clock className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
+          )}
           <div>
             <span className="font-medium">{time}:</span>
             <ul className="list-disc ml-5 space-y-1">
@@ -244,6 +249,7 @@ const TimeSlot = ({ time, activities }) => {
       </div>
     );
   }
+
 
   // Handle nested activities
   return (
@@ -590,7 +596,14 @@ fuji: {
             },
             "Soir (17h-20h)": "Dîner et nuit en hôtel standard près de la station",
             "Quartier": "Kawaguchiko (河口湖)",
-            "Stations": ["Utilisation des bus locaux"]
+            "Stations": ["Utilisation des bus locaux"],
+            "Budget": {
+              "Transport": "1300¥ (pass journée bus)",
+              "Activités": "800¥ (Télécabine Mont Kachi Kachi)",
+              "Déjeuner": "2000¥",
+              "Dîner": "3000¥",
+              "Hôtel": "8000¥"
+            }
         },
         11: {
             "Transport": {
@@ -612,7 +625,12 @@ fuji: {
                 "Départ: Kawaguchiko Station",
                 "Transit: Shinjuku Station",
                 "Arrivée: Kyoto Station"
-            ]
+            ],
+          "Budget": {
+              "Transport": "3,000¥",
+              "Repas": "2000-3000¥/repas",
+              "Hôtel": "8000-12,000¥ (selon la catégorie)"
+          }
         }
     }
 },
@@ -649,7 +667,13 @@ kyoto: {
             "Stations": [
                 "Nijojo-mae Station (métro)",
                 "Sanjo Station pour Pontocho"
-            ]
+            ],
+          "Budget": {
+            "Transport": "600¥ (Bus Pass) ou 1000¥ (Vélo)",
+            "Activités": "1000¥ (Nijo-jo)",
+            "Déjeuner": "2000-3000¥",
+            "Dîner": "3000-4000¥"
+          }
         },
         13: {
             "Transport": {
@@ -678,7 +702,13 @@ kyoto: {
             "Stations": [
                 "Saga-Arashiyama Station (JR)",
                 "Gion-Shijo Station (Keihan Line)"
-            ]
+            ],
+            "Budget": {
+              "Transport": "600¥ (Pass bus journée)",
+              "Activités": "900¥ (Kinkaku-ji + Ryoan-ji), optionnel 500¥ (Tenryu-ji)",
+              "Déjeuner": "2000-3000¥",
+              "Dîner": "3000-4000¥"
+            }
         },
         14: {
             "Transport": {
