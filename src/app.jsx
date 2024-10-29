@@ -450,7 +450,7 @@ const cityData = {
       },
       "4": {
         "Transport": "Départ hôtel → Shibuya (direct si hôtel Shinjuku, 5min)",
-        "Matin (9h-12h)": ["Shibuya Sky", "Nintendo Shop (Parco)"],
+        "Matin (9h-12h)": ["Shibuya Sky", "Nintendo Shop (Parco)" , "Yoyogi-kōen"],
         "Déjeuner (12h-13h30)": "Restaurant dans Shibuya",
         "Après-midi (13h30-17h)": {
           "Transport": "Shibuya → Harajuku (JR, 2min)",
@@ -501,7 +501,8 @@ const cityData = {
         "Suggestions de quartiers": [
           "Shimokitazawa (下北沢) - Explorez les petits cafés et boutiques",
           "Daikanyama (代官山) - Journée détente avec galeries et cafés",
-          "Nakameguro (中目黒) - Promenade au bord de la rivière"
+          "Nakameguro (中目黒) - Promenade au bord de la rivière",
+          "Nakano Broadway"
         ]
       },
       "7": {
