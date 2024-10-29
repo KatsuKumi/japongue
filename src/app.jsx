@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, MapPin, Calendar, Wallet, Phone, Info, Clock, Train, Navigation2, Building2 } from 'lucide-react';
+import { ChevronDown, MapPin, Calendar, Wallet, Phone, Info, Clock, Train, Navigation2, Building2, CircleDollarSign, NotebookPen} from 'lucide-react';
 
 const Accordion = ({ children, title, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -157,13 +157,13 @@ const LocationInfo = ({ quartier, stations, budget }) => {
       )}
       {budget && (
         <div className="flex items-start gap-2">
-          <Train className="h-4 w-4 mt-1 flex-shrink-0" />
+          <CircleDollarSign className="h-4 w-4 mt-1 flex-shrink-0" />
           <div>
-            <span className="font-medium">Stations: </span>
+            <span className="font-medium">Budget: </span>
             <ul className="list-disc ml-5 space-y-1">
-              {stations.map((station, index) => (
-                <li key={index}>{station}</li>
-              ))}
+              {Object.entries(budget).map(([key, value]) => (
+                <li>{key} : {value}</li>
+      ))}
             </ul>
           </div>
         </div>
@@ -255,6 +255,14 @@ const TimeSlot = ({ time, activities }) => {
           <div className="ml-4 mt-2 space-y-2">
             {Object.entries(activities).map(([subTime, subActivity]) => (
               <div key={subTime} className="flex items-start gap-2">
+                {/* Condition pour l'icône */}
+                {subTime === "Notes" ? (
+                  <NotebookPen className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
+                ) : subTime !== "Suggestions" && subTime !== "Spécialités" ? (
+                  <Clock className="h-4 w-4 mt-1 text-gray-500 flex-shrink-0" />
+                ) : null}
+
+                {/* Affichage du texte et de l'activité */}
                 {subTime !== "Suggestions" && subTime !== "Notes" && subTime !== "Spécialités" ? (
                   <>
                     <span className="font-medium text-sm text-gray-600 min-w-[80px]">{subTime}:</span>
@@ -272,12 +280,12 @@ const TimeSlot = ({ time, activities }) => {
                 )}
               </div>
             ))}
-
           </div>
         </div>
       </div>
     </div>
   );
+
 };
 
 const ItineraryDay = ({ day, content }) => {
@@ -319,7 +327,7 @@ const ItineraryDay = ({ day, content }) => {
             <TimeSlot key={time} time={time} activities={activities} />
           ))}
         {(content.Quartier || content.Stations || content.Budget) && (
-          <LocationInfo quartier={content.Quartier} stations={content.Stations} Budget={content.Budget} />
+          <LocationInfo quartier={content.Quartier} stations={content.Stations} budget={content.Budget} />
         )}
         {content.Options && (
           <div className="ml-4 mt-4">
