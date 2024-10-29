@@ -354,54 +354,54 @@ tokyo1: {
             "Quartier": "Shinjuku/Shibuya (selon hôtel)",
         },
         2: {
-            "Transport": "Base: Shinjuku Station",
+            "Transport": "Départ depuis hôtel vers Shinjuku Station (5-10min à pied)",
             "Matin (9h-12h)": {
                 "9h-10h30": "Tokyo Metropolitan Building (5 min à pied de Shinjuku Station West Exit)",
-                "10h30-12h": "Shinjuku Gyoen (10 min à pied de Shinjuku Station South Exit)"
+                "10h30-12h": "Shinjuku Gyoen (10 min à pied)"
             },
             "Déjeuner (12h-13h30)": "Restaurant dans Shinjuku",
-            "Après-midi (13h30-17h)": ["Exploration tranquille de Shinjuku", "Don Quijote (shopping, 7 min de Shinjuku Station East Exit)"],
-            "Soir (18h-21h)": "Memory Lane (Omoide Yokocho, adjacent à Shinjuku Station West Exit)",
+            "Après-midi (13h30-17h)": ["Exploration tranquille de Shinjuku", "Don Quijote (shopping)"],
+            "Soir (18h-21h)": "Memory Lane (Omoide Yokocho)",
             "Quartier": "Shinjuku (新宿)",
-            "Stations": ["Shinjuku Station (JR, Metro, plusieurs lignes)"]
+            "Stations": ["Base: Shinjuku Station (JR, Metro)"]
         },
         3: {
-            "Transport": "Départ: Shinjuku → Asakusa (直通線/Direct Line, 30min)",
+            "Transport": "Départ hôtel → Asakusa (Metro direct depuis Shinjuku/Shibuya, 30min)",
             "Matin (8h-12h)": {
-                "8h-10h": "Sanctuaire Sensoji (10 min à pied de Asakusa Station)",
-                "10h-12h": "Nakamise Shopping Street (sur le chemin du temple)"
+                "8h-10h": "Sanctuaire Sensoji",
+                "10h-12h": "Nakamise Shopping Street"
             },
             "Déjeuner (12h-13h30)": "Restaurant local Asakusa",
-            "Après-midi (13h30-17h)": ["Asahi Building (15 min à pied)", "Promenade Sumida Park (au bord de la rivière)"],
-            "Soir (17h-21h)": ["Skytree (10 min à pied ou 1 station depuis Asakusa)", "Dîner Solamachi mall"],
+            "Après-midi (13h30-17h)": ["Asahi Building (15 min à pied)", "Promenade Sumida Park"],
+            "Soir (17h-21h)": ["Skytree", "Dîner Solamachi mall"],
             "Quartier": "Asakusa (浅草) → Oshiage (押上)",
             "Stations": [
-                "Asakusa Station (Metro Ginza Line, Asakusa Line)",
-                "Tokyo Skytree Station (Tobu Skytree Line)"
+                "Asakusa Station (Metro)",
+                "Tokyo Skytree Station"
             ]
         },
         4: {
-            "Transport": "Départ: Asakusa → Shibuya (Metro Ginza Line, 40min)",
-            "Matin (9h-12h)": ["Shibuya Sky (connecté à Shibuya Station)", "Nintendo Shop (Parco, 5 min à pied)"],
+            "Transport": "Départ hôtel → Shibuya (direct si hôtel Shinjuku, 5min)",
+            "Matin (9h-12h)": ["Shibuya Sky", "Nintendo Shop (Parco)"],
             "Déjeuner (12h-13h30)": "Restaurant dans Shibuya",
             "Après-midi (13h30-17h)": {
-                "Transport": "Shibuya → Harajuku (JR Yamanote Line, 2min)",
+                "Transport": "Shibuya → Harajuku (JR, 2min)",
                 "Activités": ["Harajuku exploration (Takeshita Street)", "Marion Crêpes", "Taiyaki Hiiragi"]
             },
-            "Soir (18h-21h)": "Shibuya Yokocho pour le dîner (5 min de Shibuya Station)",
+            "Soir (18h-21h)": "Shibuya Yokocho pour le dîner",
             "Quartier": "Shibuya (渋谷) → Harajuku (原宿)",
             "Stations": [
-                "Shibuya Station (JR, Metro, plusieurs lignes)",
-                "Harajuku Station (JR Yamanote Line)"
+                "Shibuya Station",
+                "Harajuku Station"
             ]
         },
         5: {
-            "Transport": "Départ: Shibuya → Mitaka (JR Chuo Line, 30min)",
-            "Matin (10h-13h)": ["Musée Ghibli (navette gratuite depuis Mitaka Station)", "Parc Inokashira (5 min à pied)"],
+            "Transport": "Départ hôtel → Mitaka (JR Chuo Line direct depuis Shinjuku, 30min)",
+            "Matin (10h-13h)": ["Musée Ghibli (navette depuis Mitaka Station)", "Parc Inokashira"],
             "Déjeuner (13h-14h30)": "Restaurant près du parc",
             "Après-midi (14h30-18h)": {
-                "Transport": "Mitaka → Ikebukuro (JR Chuo → Yamanote, 25min)",
-                "Activités": ["Ikebukuro exploration", "Pokemon Center (Sunshine City)", "Furifu"]
+                "Transport": "Mitaka → Ikebukuro (JR, 25min)",
+                "Activités": ["Ikebukuro exploration", "Pokemon Center", "Furifu"]
             },
             "Soir (18h-21h)": {
                 "Transport": "Ikebukuro → Ebisu (JR Yamanote Line, 15min)",
@@ -409,42 +409,42 @@ tokyo1: {
             },
             "Quartier": "Mitaka (三鷹) → Ikebukuro (池袋) → Ebisu (恵比寿)",
             "Stations": [
-                "Mitaka Station (JR Chuo Line)",
-                "Ikebukuro Station (JR, Metro, plusieurs lignes)",
-                "Ebisu Station (JR Yamanote Line)"
+                "Mitaka Station",
+                "Ikebukuro Station",
+                "Ebisu Station"
             ]
         },
         6: {
             "Repos": "Journée libre pour se reposer ou rattraper des activités manquées",
-            "Suggestions de quartiers": ["Shimokitazawa (下北沢) - quartier hippie", "Daikanyama (代官山) - quartier chic", "Nakameguro (中目黒) - quartier trendy"]
+            "Suggestions de quartiers": ["Shimokitazawa (下北沢)", "Daikanyama (代官山)", "Nakameguro (中目黒)"]
         },
         7: {
-            "Transport": "Départ: Hotel → Ueno (selon localisation)",
-            "Matin (9h30-12h)": ["Ueno Park", "Musée National de Tokyo (dans le parc)"],
+            "Transport": "Départ hôtel → Ueno (Metro direct, 25min)",
+            "Matin (9h30-12h)": ["Ueno Park", "Musée National de Tokyo"],
             "Déjeuner (12h-13h30)": "Restaurant dans Ueno",
             "Après-midi (13h30-17h)": {
-                "Transport": "Ueno → Kiyosumi-Shirakawa (Metro Hibiya → Hanzomon Line, 20min)",
-                "Activités": ["Kiyosumi Teien", "Marché Tsukiji (15min en métro depuis Kiyosumi)"]
+                "Transport": "Ueno → Kiyosumi-Shirakawa (Metro, 20min)",
+                "Activités": ["Kiyosumi Teien", "Marché Tsukiji"]
             },
             "Soir (17h-21h)": {
-                "Transport": "Tsukiji → Ginza (Metro Hibiya Line, 5min)",
+                "Transport": "Tsukiji → Ginza (Metro, 5min)",
                 "Activités": ["Ginza exploration", "Uniqlo", "Starbucks Reserve Roastery"]
             },
             "Quartier": "Ueno (上野) → Kiyosumi (清澄) → Ginza (銀座)",
             "Stations": [
-                "Ueno Station (JR, Metro)",
-                "Kiyosumi-Shirakawa Station (Metro)",
-                "Ginza Station (Metro, plusieurs lignes)"
+                "Ueno Station",
+                "Kiyosumi-Shirakawa Station",
+                "Ginza Station"
             ]
         },
         8: {
-            "Transport": "Départ: Ginza → Akihabara (Metro Hibiya Line, 15min)",
-            "Matin (10h-12h)": "Akihabara Electric Town (sortie Electric Town d'Akihabara Station)",
+            "Transport": "Départ hôtel → Akihabara (Metro direct, 20min)",
+            "Matin (10h-12h)": "Akihabara Electric Town",
             "Déjeuner (12h-13h30)": "Restaurant thématique",
-            "Après-midi (13h30-17h)": ["Mandarake Complex (5 min à pied)", "@Home cafe ou Cat cafe Nyankoto (dans le quartier)"],
+            "Après-midi (13h30-17h)": ["Mandarake Complex", "@Home cafe ou Cat cafe Nyankoto"],
             "Soir (17h-21h)": "Shopping geek Akihabara",
             "Quartier": "Akihabara (秋葉原)",
-            "Stations": ["Akihabara Station (JR, Metro Hibiya Line)"]
+            "Stations": ["Akihabara Station"]
         }
     }
 },
@@ -454,38 +454,38 @@ fuji: {
         9: {
             "Transport": {
                 "Options": [
-                    "Train: Shinjuku Station > Kawaguchiko (2h, JR Pass)",
+                    "Train: Shinjuku Station > Kawaguchiko (2h, JR Pass + bus local)",
                 ],
-                "Notes": "Départ depuis Shinjuku Station (新宿駅) Minimum 150€ par personne et par nuit pour avoir la baignoire"
+                "Notes": "Départ depuis Shinjuku Station (新宿駅)"
             },
             "Matin (8h-11h)": {
                 "8h00": "Départ de Shinjuku",
-                "10h00": "Arrivée à Kawaguchiko Station",
-                "10h30": "Dépôt des bagages au ryokan si check-in impossible"
+                "10h00": "Arrivée à Kawaguchiko",
+                "10h30": "Check-in ryokan si possible ou dépôt bagages"
             },
-            "Déjeuner (11h-12h30)": "Restaurant local près de la station",
+            "Déjeuner (11h-12h30)": "Restaurant local",
             "Après-midi (13h-16h)": {
-                "Transport": "Bus local depuis Kawaguchiko Station (10min, 150¥)",
+                "Transport": "Bus local depuis Kawaguchiko Station",
                 "Activités": [
-                    "Chureito Pagoda (prévoir 1h de visite)",
+                    "Chureito Pagoda",
                     "Retour à Kawaguchiko",
                     "Installation ryokan"
                 ]
             },
             "Soir (16h-21h)": ["Onsen avec vue Fuji", "Dîner kaiseki au ryokan"],
             "Quartier": "Kawaguchiko (河口湖)",
-            "Stations": ["Kawaguchiko Station (富士急行線)"]
+            "Stations": ["Kawaguchiko Station"]
         },
         10: {
-            "Transport": "Bus local Red/Green Line disponible (1300¥ pour pass journée)",
+            "Transport": "Bus local Red/Green Line (1300¥ pour pass journée)",
             "Matin (9h-12h)": {
-                "Transport": "Bus depuis le ryokan vers Kachi Kachi Ropeway (15min)",
+                "Transport": "Bus vers Kachi Kachi Ropeway",
                 "Activités": [
-                    "Tour du lac en bus (Red Line, arrêts multiples pour photos)",
-                    "Télécabine Mont Kachi Kachi (1000¥ aller-retour)"
+                    "Tour du lac en bus (Red Line)",
+                    "Télécabine Mont Kachi Kachi"
                 ]
             },
-            "Déjeuner (12h-13h30)": "Restaurant avec vue sur le Fuji près du téléphérique",
+            "Déjeuner (12h-13h30)": "Restaurant avec vue sur le Fuji",
             "Après-midi (13h30-17h)": {
                 "Transport": "Green Line Bus Circuit",
                 "Activités": [
@@ -494,25 +494,28 @@ fuji: {
                     "Point de vue Nord du lac"
                 ]
             },
-            "Soir (17h-20h)": "Deuxième nuit au ryokan",
+            "Soir (17h-20h)": "Dîner et nuit en hôtel standard près de la station",
             "Quartier": "Kawaguchiko (河口湖)",
-            "Stations": ["Utilisation des bus locaux - Pass journée recommandé"]
+            "Stations": ["Utilisation des bus locaux"]
         },
         11: {
-            "Journée": "Journée libre pour activités optionnelles",
-            "Options": [
-                "Randonnée au Mont Tenjo (téléphérique + 1h de marche)",
-                "Visite du Kubota Itchiku Art Museum (2000¥)",
-                "Onsen Benifuji no Yu (1300¥)"
-            ],
-            "Transport": {
-                "Notes": "Bus Red/Green Line toujours utilisable si pass 2 jours acheté la veille",
-                "Options": ["Location de vélo possible (1500¥/jour) à la station"]
+            "Matin (7h-9h)": {
+                "Options": [
+                    "Randonnée matinale Mont Tenjo",
+                    "Photos lever du soleil sur le Fuji"
+                ]
             },
-            "Quartier": "Kawaguchiko (河口湖)",
+            "Transport": {
+                "9h00": "Départ pour Kyoto",
+                "Notes": "Train pour Shinjuku puis Shinkansen pour Kyoto"
+            },
+            "Après-midi": "Arrivée et installation à Kyoto",
+            "Soir": "Exploration tranquille quartier de l'hôtel",
+            "Quartier": "Kawaguchiko → Kyoto",
             "Stations": [
-                "Base: Kawaguchiko Station",
-                "Bus locaux desservant tous les points d'intérêt"
+                "Départ: Kawaguchiko Station",
+                "Transit: Shinjuku Station",
+                "Arrivée: Kyoto Station"
             ]
         }
     }
@@ -522,37 +525,28 @@ kyoto: {
     days: {
         12: {
             "Transport": {
-                "Options": [
-                    "Partie 1 - Kawaguchiko → Shinjuku:",
-                    "- Train (2h, 2500¥) (JR pass)",
-                    "Partie 2 - Tokyo → Kyoto:",
-                    "- Shinkansen (2h15, JR Pass valide)",
-                ],
-                "Notes": "Réservation Shinkansen recommandée, premier bus Kawaguchiko à 6h15"
+                "Notes": "Déjà arrivé la veille, départ depuis l'hôtel"
             },
-            "Matin (6h-12h)": {
-                "6h15": "Départ de Kawaguchiko",
-                "8h15": "Arrivée à Shinjuku",
-                "9h00": "Départ de Tokyo Station",
-                "11h15": "Arrivée à Kyoto Station",
-                "11h30": "Dépôt des bagages à l'hôtel ou consigne"
-            },
-            "Déjeuner (12h-13h30)": "Restaurant niveau 10 de Kyoto Station - vue sur la ville",
-            "Après-midi (13h30-17h)": {
-                "Transport": "Bus 101 depuis Kyoto Station vers Nijojo-mae (220¥ ou pass bus journée 600¥)",
+            "Matin (9h-12h)": {
+                "Transport": "Bus 101 depuis l'hôtel vers Nijojo-mae",
                 "Activités": [
                     "Nijo-jo (entrée 1000¥)",
                     "Marché Nishiki (15 min à pied depuis Nijo-jo)"
                 ]
             },
-            "Soir (17h-21h)": "Pontocho (accès depuis station Sanjo ou Gion-Shijo)",
+            "Déjeuner (12h-13h30)": "Restaurant dans le marché Nishiki",
+            "Après-midi (13h30-17h)": {
+                "Transport": "À pied dans le quartier",
+                "Activités": [
+                    "Exploration du marché Nishiki",
+                    "Boutiques traditionnelles"
+                ]
+            },
+            "Soir (17h-21h)": "Pontocho",
             "Quartier": "Centre de Kyoto (京都市内)",
             "Stations": [
-                "Shinjuku Station (transit)",
-                "Tokyo Station (départ Shinkansen)",
-                "Kyoto Station (JR, métro)",
-                "Nijojo-mae Station (métro Tozai Line)",
-                "Sanjo Station (Keihan Line) pour Pontocho"
+                "Nijojo-mae Station (métro)",
+                "Sanjo Station pour Pontocho"
             ]
         },
         13: {
@@ -665,17 +659,42 @@ kyoto: {
         }
     }
 },
-    osaka: {
-    title: "Osaka",
+  
+himeji: {
+    title: "Himeji",
     days: {
         17: {
             "Transport": {
                 "Options": [
-                    "JR Special Rapid Service: Kyoto → Osaka (30min, gratuit avec JR Pass)",
-                    "Keihan Line: Kyoto → Yodoyabashi (45min, 410¥)"
+                    "Shinkansen depuis Kyoto (JR Pass valide):",
+                    "- Hikari: 30min (meilleure option)"
                 ],
-                "Notes": "Destination finale selon votre hôtel: Osaka Station (JR) ou Umeda (Métro)"
+                "Notes": "Départ depuis Kyoto Station avec bagages (consigne à Himeji)"
             },
+            "Matin (8h-12h)": {
+                "8h00": "Départ de Kyoto",
+                "8h30": "Arrivée et dépôt bagages à Himeji Station",
+                "9h00-12h00": "Château Himeji et jardins Koko-en"
+            },
+            "Déjeuner (12h-13h30)": "Restaurant dans la rue commerçante Miyuki-dori",
+            "Après-midi (13h30-16h)": {
+                "Transport": "Shinkansen Himeji → Osaka (30min)",
+                "Activités": "Installation hôtel Osaka"
+            },
+            "Soir (16h-21h)": "Exploration Dotonbori et dîner",
+            "Quartier": "Himeji → Osaka",
+            "Stations": [
+                "Himeji Station (matin)",
+                "Osaka/Umeda Station (après-midi)"
+            ]
+        }
+    }
+},
+    osaka: {
+    title: "Osaka",
+    days: {
+        18: {
+            "Transport": "Métro depuis hôtel Osaka",
             "Matin (9h-11h)": {
                 "9h00": "Départ de Kyoto",
                 "9h30-10h00": "Arrivée à Osaka/Umeda",
@@ -709,13 +728,8 @@ kyoto: {
                 "Dobutsuen-mae (Métro, Shinsekai)"
             ]
         },
-        18: {
-            "Transport": {
-                "Options": [
-                    "Métro + Chuo Line vers Osakako (320¥)",
-                    "Pass journée métro recommandé (800¥)"
-                ]
-            },
+        19: {
+            "Transport": "Départ hôtel → Minoh",
             "Matin (10h-13h)": {
                 "Transport": "Métro vers Osakako Station",
                 "Activités": [
