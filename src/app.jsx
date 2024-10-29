@@ -782,7 +782,9 @@ kyoto: {
                 "Shopping à Kawaramachi (地下鉄烏丸線)",
                 "Cafés traditionnels dans Gion",
                 "Nishiki Market en détail",
-                "Musée International du Manga (1000¥)"
+                "Musée International du Manga (1000¥)",
+                "studio TOEI park",
+                "kyoto tower"
             ],
             "Transport": {
                 "Options": [
