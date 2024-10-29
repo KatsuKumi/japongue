@@ -379,7 +379,6 @@ const cityData = {
         "Matin (7h-12h)": "Arrivée Narita/Haneda",
         "Transport (12h-14h)": {
           "Options": [
-            "Keisei Skyliner (40 min, plus rapide) - De Narita à Ueno, puis transfert JR",
             "Narita Express (1h30, JR Pass) - De Narita Terminal 1 à Shinjuku Station",
             "Limousine Bus (2h, plus reposant) - De Narita/Haneda directement à votre hôtel"
           ],
@@ -424,18 +423,19 @@ const cityData = {
         }
       },
       "3": {
-        "Transport": "Départ hôtel → Asakusa (Metro direct depuis Shinjuku/Shibuya, 30min)",
+        "Transport": "Départ hôtel → Asakusa -> Shibamata -> Skytree (Metro direct depuis Shinjuku/Shibuya, 30min)",
         "Matin (7h-11h)": {
           "7h-9h": "Sanctuaire Sensoji (moins de monde le matin, idéal pour photos au lever du soleil)",
-          "9h-11h": "Nakamise Shopping Street"
+          "9h-10h": "Nakamise Shopping Street",
+          "11h-12h": "Asahi Building (15 min à pied) / Promenade Sumida Park"
         },
         "Déjeuner (11h-12h30)": "Restaurant local Asakusa",
         "Après-midi (12h30-17h)": [
-          "Option: Croisière Sumida River vers Skytree (720¥) ou métro direct si timing serré",
-          "Alternative: Asahi Building (15 min à pied)",
-          "Promenade Sumida Park"
+          "Prendre le train vers Shibamata",
+          "Explorer Shibamata (temple Taishakuten, rue commerçante traditionnelle Shitamachi)"
         ],
         "Soir (17h-21h)": [
+          "Retour vers Skytree",
           "Skytree (timing idéal pour coucher de soleil)",
           "Dîner Solamachi mall"
         ],
