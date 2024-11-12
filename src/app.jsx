@@ -373,7 +373,7 @@ const ItineraryView = ({ cityData }) => {
 
 const cityData = {
 "tokyo1": {
-    "title": "Tokyo Première Partie",
+    "title": "Tokyo Première Partie 13-21 mai 2025 (1600)",
     "days": {
       "1": {
         "Matin (7h-12h)": "Arrivée Narita/Haneda",
@@ -562,7 +562,7 @@ const cityData = {
     }
   },
 fuji: {
-    title: "Mont Fuji & Kawaguchiko",
+    title: "Mont Fuji & Kawaguchiko 21-23",
     days: {
         9: {
             "Transport": {
@@ -663,7 +663,7 @@ fuji: {
     }
 },
 kyoto: {
-    title: "Kyoto",
+    title: "Kyoto 23-28",
     days: {
         12: {
             "Transport": {
@@ -861,7 +861,7 @@ himeji: {
     }
 },
   "osaka": {
-        "title": "Osaka",
+        "title": "Osaka 28-30",
         "days": {
             "18": {
                 "Transport": {
@@ -966,7 +966,7 @@ himeji: {
         }
     },
 tokyo2: {
-    title: "Tokyo Retour",
+    title: "Tokyo Retour 30-",
     days: {
         21: {
             "Transport": {
