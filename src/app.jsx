@@ -860,7 +860,7 @@ himeji: {
     }
 },
   "osaka": {
-        "title": "Osaka 29 mai-02 juin",
+        "title": "Osaka 29 mai-02 juin (410€)",
         "days": {
             "30": {
                 "Transport": {
