@@ -866,9 +866,9 @@ himeji: {
         }
     }
 },
-  "osaka": {
+"osaka": {
         "title": "Osaka 29 mai-02 juin (410€)",
-         "link": "",
+         "link": "https://www.booking.com/hotel/jp/mori-apartment-dao-dun-ku-dotonbori-2dk.fr.html",
         "days": {
             "30": {
                 "Transport": {
@@ -974,6 +974,7 @@ himeji: {
     },
 tokyo2: {
     title: "Tokyo Retour 02-05 juin (576 Eur)",
+    "link": "https://www.airbnb.fr/rooms/912763508472552717",
     days: {
         102: {
             "Transport": {
