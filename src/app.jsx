@@ -359,6 +359,9 @@ const ItineraryView = ({ cityData }) => {
           title={city.title}
           icon={<Navigation2 className="h-5 w-5" />}
         >
+          <div className="border border-2 rounded-lg bg-gray-50 px-4 py-1 mb-4 flex flex-col items-center">
+            <a className="text-xl font-medium underline text-blue-600" href={city.link}>Lien de l'hôtel pour le séjour</a>
+          </div>
           <div className="space-y-4">
             {Object.entries(city.days).map(([day, content]) => (
               <ItineraryDay key={day} day={day} content={content} />
@@ -374,6 +377,7 @@ const ItineraryView = ({ cityData }) => {
 const cityData = {
 "tokyo1": {
     "title": "Tokyo Première Partie 13-21 mai 2025 (1600)",
+    "link":"https://www.booking.com/hotel/jp/v-close-to-shinjuku-kabukicho-korean-town-frwifi-i.fr.html?label=gen173nr-1BCAEoggI46AdIM1gEaE2IAQGYAQ24ARfIAQ_YAQHoAQGIAgGoAgO4AuO0qbkGwAIB0gIkOTdkMmNkNTktYWVjZC00MjcyLTk5NjktM2VkZWQ2YmEwNzgw2AIF4AIB&sid=9b485d7898766371de991fb950377dc9&aid=304142&ucfs=1&checkin=2025-05-08&checkout=2025-05-16&dest_id=257062&dest_type=landmark&group_adults=3&no_rooms=1&group_children=0&nflt=price%3DEUR-min-210-1%3Bht_id%3D204%3Bht_id%3D201%3Bprivacy_type%3D3&matching_block_id=1299618701_402850305_3_0_0&atlas_src=sr_iw_title",
     "days": {
       "13": {
         "Matin (7h-12h)": "Arrivée Narita/Haneda",
