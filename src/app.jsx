@@ -375,7 +375,7 @@ const cityData = {
 "tokyo1": {
     "title": "Tokyo Première Partie 13-21 mai 2025 (1600)",
     "days": {
-      "1": {
+      "13": {
         "Matin (7h-12h)": "Arrivée Narita/Haneda",
         "Transport (12h-14h)": {
           "Options": [
@@ -406,7 +406,7 @@ const cityData = {
           "PASMO/SUICA": "2000¥"
         }
       },
-      "2": {
+      "14": {
         "Transport": "Départ depuis hôtel vers Shinjuku Station (5-10min à pied)",
         "Matin (9h-12h)": {
           "9h-10h30": "Tokyo Metropolitan Building (5 min à pied de Shinjuku Station West Exit)",
@@ -422,7 +422,7 @@ const cityData = {
           "Dîner": "2000-3000¥"
         }
       },
-      "3": {
+      "15": {
         "Transport": "Départ hôtel → Akihabara (Metro direct, 20min)",
         "Matin (10h-12h)": "Akihabara Electric Town",
         "Déjeuner (12h-13h30)": "Restaurant thématique",
@@ -434,7 +434,7 @@ const cityData = {
         "Quartier": "Akihabara (秋葉原)",
         "Stations": ["Akihabara Station"]
       },
-      "4": {
+      "16": {
         "Transport": "Départ hôtel → Asakusa -> Shibamata -> Skytree (Metro direct depuis Shinjuku/Shibuya, 30min)",
         "Matin (7h-11h)": {
           "7h-9h": "Sanctuaire Sensoji (moins de monde le matin, idéal pour photos au lever du soleil)",
@@ -460,7 +460,7 @@ const cityData = {
           "Repas": "2000-3000¥/repas"
         }
       },
-      "5": {
+      "17": {
         "Transport": "Départ hôtel → Shibuya (direct si hôtel Shinjuku, 5min)",
         "Matin (9h-12h)": ["Shibuya Sky", "Nintendo Shop (Parco)" , "Yoyogi-kōen"],
         "Déjeuner (12h-13h30)": "Restaurant dans Shibuya",
@@ -480,7 +480,7 @@ const cityData = {
           "Repas": "2000-3000¥/repas"
         }
       },
-      "6": {
+      "18": {
         "Transport": "Départ hôtel → Mitaka (JR Chuo Line direct depuis Shinjuku, 30min)",
         "Matin (10h-13h)": [
           "Musée Ghibli (navette depuis Mitaka Station, vérifier les horaires)",
@@ -508,7 +508,7 @@ const cityData = {
           "Repas": "2000-3000¥/repas"
         }
       },
-      "7": {
+      "19": {
           "Transport": "Départ hôtel → Ueno (Metro direct, 25min)",
           "Matin (8h30-11h)": ["Ueno Park", "Musée National de Tokyo (visite courte)"],
           "Fin de matinée (11h-13h)": {
@@ -550,7 +550,7 @@ const cityData = {
             "Visite rapide du musée d'Ueno pour tenir le planning"
           ]
         },
-      "8": {
+      "20": {
         "Repos": "Journée libre pour se reposer ou rattraper des activités manquées",
         "Suggestions de quartiers": [
           "Shimokitazawa (下北沢) - Explorez les petits cafés et boutiques",
@@ -564,7 +564,7 @@ const cityData = {
 fuji: {
     title: "Mont Fuji & Kawaguchiko 21-23",
     days: {
-        9: {
+        21: {
             "Transport": {
                 "Options": [
                     "Train: Shinjuku Station > Kawaguchiko (2h, JR Pass + bus local)",
@@ -599,7 +599,7 @@ fuji: {
                 "Bus local": "1500¥ pass journée"
             }
         },
-        10: {
+        22: {
             "Transport": {
                 "Options": [
                     "Bus local Red/Green Line (1300¥ pour pass journée)",
@@ -633,7 +633,7 @@ fuji: {
               "Hôtel": "8000¥"
             }
         },
-        11: {
+        23: {
             "Transport": {
                 "Options": [
                     "9h00-11h00 : Kawaguchiko → Shinjuku",
@@ -665,7 +665,7 @@ fuji: {
 kyoto: {
     title: "Kyoto 23-28",
     days: {
-        12: {
+        24: {
             "Transport": {
               "Options": [
                     "Bus Pass 1 jour recommandé (600¥)",
@@ -704,7 +704,7 @@ kyoto: {
             "Dîner": "3000-4000¥"
           }
         },
-        13: {
+        25: {
             "Transport": {
                 "Matin": "Bus 205 depuis Kyoto Station vers Kinkakuji-michi (230¥)",
                 "Notes": "Pass bus journée recommandé (600¥) pour les multiples trajets"
@@ -739,7 +739,7 @@ kyoto: {
               "Dîner": "3000-4000¥"
             }
         },
-        14: {
+        26: {
             "Transport": {
                 "Options": [
                     "JR Nara Line jusqu'à Inari Station (5min, gratuit avec JR Pass)",
@@ -776,7 +776,7 @@ kyoto: {
               "Dîner": "3000-4000¥"
             }
         },
-        15: {
+        27: {
             "Journée": "Journée libre pour explorer plus tranquillement",
             "Suggestions": [
                 "Shopping à Kawaramachi (地下鉄烏丸線)",
@@ -796,7 +796,7 @@ kyoto: {
             "Quartier": "Au choix",
             "Stations": ["Selon activités choisies"]
         },
-        16: {
+        28: {
             "Transport": {
                 "Options": [
                     "Bus 33 vers Katsura Rikyu-mae (230¥)",
@@ -833,7 +833,7 @@ kyoto: {
 himeji: {
     title: "Himeji",
     days: {
-        17: {
+        29: {
             "Transport": {
                 "Options": [
                     "Shinkansen depuis Kyoto (JR Pass valide):",
@@ -861,9 +861,9 @@ himeji: {
     }
 },
   "osaka": {
-        "title": "Osaka 28-30",
+        "title": "Osaka 28-31",
         "days": {
-            "18": {
+            "30": {
                 "Transport": {
                     "Options": [
                         "Pass journée métro recommandé (800¥)"
@@ -900,7 +900,7 @@ himeji: {
                     "Namba Station"
                 ]
             },
-            "19": {
+            "31": {
                 "Transport": {
                     "Options": [
                         "Hankyu Line: Umeda → Minoh (30min, 280¥)",
@@ -936,7 +936,7 @@ himeji: {
                     "Dobutsuen-mae Station"
                 ]
             },
-            "20": {
+            "101": {
                 "Transport": {
                     "Options": [
                         "Train direct vers Nara (45min)",
@@ -966,9 +966,9 @@ himeji: {
         }
     },
 tokyo2: {
-    title: "Tokyo Retour 30-",
+    title: "Tokyo Retour 31-3",
     days: {
-        21: {
+        102: {
             "Transport": {
                 "Options": [
                     "Shinkansen depuis Osaka (JR Pass valide):",
@@ -1041,18 +1041,18 @@ tokyo2: {
             ]
         },
       
-        22: {
+        103: {
               "Journée": "Journée libre à Tokyo",
               "Quartier": "Au choix",
               "Stations": ["Selon activités choisies"]
           },
 
-        23: {
+        104: {
             "Journée": "Journée libre à Tokyo",
             "Quartier": "Au choix",
             "Stations": ["Selon activités choisies"]
         },
-        24: {
+        105: {
             "Transport": {
                 "Options vers Narita": [
                     "Narita Express (environ 1h, 3000¥ ou JR Pass)",
