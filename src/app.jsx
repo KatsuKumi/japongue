@@ -562,7 +562,7 @@ const cityData = {
     }
   },
 fuji: {
-    title: "Mont Fuji & Kawaguchiko 21-23",
+    title: "Mont Fuji & Kawaguchiko 21-23 mai",
     days: {
         21: {
             "Transport": {
@@ -632,7 +632,12 @@ fuji: {
               "Dîner": "3000¥",
               "Hôtel": "8000¥"
             }
-        },
+        }
+    }
+},
+kyoto: {
+    title: "Kyoto 23-29 mai (700€)",
+    days: {
         23: {
             "Transport": {
                 "Options": [
@@ -659,12 +664,7 @@ fuji: {
               "Repas": "2000-3000¥/repas",
               "Hôtel": "8000-12,000¥ (selon la catégorie)"
           }
-        }
-    }
-},
-kyoto: {
-    title: "Kyoto 23-28",
-    days: {
+        },
         24: {
             "Transport": {
               "Options": [
@@ -829,7 +829,6 @@ kyoto: {
         }
     }
 },
-  
 himeji: {
     title: "Himeji",
     days: {
@@ -861,7 +860,7 @@ himeji: {
     }
 },
   "osaka": {
-        "title": "Osaka 28-31",
+        "title": "Osaka 29 mai-02 juin",
         "days": {
             "30": {
                 "Transport": {
@@ -966,7 +965,7 @@ himeji: {
         }
     },
 tokyo2: {
-    title: "Tokyo Retour 31-3",
+    title: "Tokyo Retour 02-05 juin",
     days: {
         102: {
             "Transport": {
