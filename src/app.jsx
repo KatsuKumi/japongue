@@ -965,7 +965,7 @@ himeji: {
         }
     },
 tokyo2: {
-    title: "Tokyo Retour 02-05 juin",
+    title: "Tokyo Retour 02-05 juin (576 Eur)",
     days: {
         102: {
             "Transport": {
