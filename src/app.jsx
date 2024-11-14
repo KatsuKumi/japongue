@@ -567,7 +567,7 @@ const cityData = {
   },
 fuji: {
     title: "Mont Fuji & Kawaguchiko 21-23 mai",
-    "link":"https://www.booking.com/hotel/jp/konanso.fr.html",
+    "link":"https://www.hpdsp.net/konansou/en/hw/hwp3200/hww3201init.do?screenId=HWW3201&yadNo=386712&planCd=L1790002&roomTypeCd=0341257&planListNumPlan=5_1_1&room_number=1&roomCountBkup=1&adultNumBkup=3&browserBack=1&adultNum=3&dateUndecidedBkup=1&calYear=2025&calMonth=04&roomCrack=300000&roomCrackBkup=300000&calOpenFlg=1&stayCount=2&roomCount=1#price_cal",
     days: {
         21: {
             "Transport": {
@@ -577,7 +577,8 @@ fuji: {
                 "Notes": [
                     "Départ depuis Shinjuku Station (新宿駅)",
                     "Réservation ryokan OBLIGATOIRE plusieurs mois à l'avance",
-                    "Vérifier météo pour visibilité du Mont Fuji"
+                    "Vérifier météo pour visibilité du Mont Fuji",
+                    "Suite deluxe sa mère : https://www.booking.com/hotel/jp/konanso.fr.html"
                 ]
             },
             "Matin (8h-11h)": {
