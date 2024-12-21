@@ -1,9 +1,12 @@
 {
   "name": "glitch-blank-react",
   "version": "0.0.2",
+  "homepage": "https://katsukumi.github.io/japongue",
   "description": "A simple React app built with Vite and React.",
   "main": "server.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "vite",
     "build": "vite build",
     "serve": "vite preview"
@@ -15,7 +18,8 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "vite": "^4.0.0"
+    "gh-pages": "^6.2.0",
+    "vite": "5.4.6"
   },
   "browserslist": [
     ">0.2%",

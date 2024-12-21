@@ -71,9 +71,9 @@ const JapanItinerary = () => {
   const preTrip = {
     documents: [
       "Passeport valide 6 mois après retour",
-      "Japan Rail Pass à commander avant départ",
       "Réservations musée Ghibli / Katsura Villa imprimées",
-      "Copies numériques de tous les documents"
+      "Copies numériques de tous les documents",
+      "Carte SIM japonaise"
     ],
     apps: [
       "Google Maps (+ télécharger cartes hors-ligne)",
@@ -1182,7 +1182,7 @@ tokyo2: {
 
       {activeTab === 'preparation' && (
         <div className="space-y-4">
-          <Card title="Documents Essentiels">
+          <Card title="Essentiels">
             <ul className="list-disc ml-6">
               {preTrip.documents.map((doc, idx) => (
                 <li key={idx} className="text-gray-700">{doc}</li>
