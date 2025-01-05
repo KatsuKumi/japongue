@@ -73,7 +73,8 @@ const JapanItinerary = () => {
       "Passeport valide 6 mois après retour",
       "Réservations musée Ghibli / Katsura Villa imprimées",
       "Copies numériques de tous les documents",
-      "Carte SIM japonaise"
+      "Carte SIM japonaise",
+      "Adaptateur prise",
     ],
     apps: [
       "Google Maps (+ télécharger cartes hors-ligne)",
