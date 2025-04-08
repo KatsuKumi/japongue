@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.mt-safe {
+    margin-top: env(safe-area-inset-top, 20px);
+}
+
+.mb-safe {
+    margin-bottom: env(safe-area-inset-bottom, 20px);
+}

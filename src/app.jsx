@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, MapPin, Calendar, Wallet, Phone, Info, Clock, Train, Navigation2, Building2, CircleDollarSign, NotebookPen} from 'lucide-react';
+import { StatusBar, Style } from '@capacitor/status-bar';
 
 const Accordion = ({ children, title, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,6 +76,7 @@ const JapanItinerary = () => {
       "Copies numériques de tous les documents",
       "Carte SIM japonaise",
       "Adaptateur prise",
+      "Coussin avion/train",
     ],
     apps: [
       "Google Maps (+ télécharger cartes hors-ligne)",
@@ -378,7 +380,7 @@ const ItineraryView = ({ cityData }) => {
 const cityData = {
 "tokyo1": {
     "title": "Tokyo Première Partie 13-21 mai 2025 (1600)",
-    "link":"https://www.booking.com/hotel/jp/v-close-to-shinjuku-kabukicho-korean-town-frwifi-i.fr.html",
+    "link":"https://www.airbnb.fr/rooms/1197032103013836139",
     "days": {
       "13": {
         "Matin (7h-12h)": "Arrivée Narita/Haneda",
@@ -418,7 +420,7 @@ const cityData = {
           "10h30-12h": "Shinjuku Gyoen (10 min à pied, entrée 500¥)"
         },
         "Déjeuner (12h-13h30)": "Restaurant dans Shinjuku",
-        "Après-midi (13h30-17h)": ["Exploration tranquille de Shinjuku", "Don Quijote (shopping)"],
+        "Après-midi (13h30-17h)": ["Exploration tranquille de Shinjuku", "Don Quijote (shopping)", "Mairie de shinjuku (observatoire gratuit)"],
         "Soir (18h-21h)": "Memory Lane (Omoide Yokocho, prévoir un plan B si bondé)",
         "Quartier": "Shinjuku (新宿)",
         "Stations": ["Base: Shinjuku Station (JR, Metro)"],
@@ -488,13 +490,8 @@ const cityData = {
       "18": {
         "Transport": "Départ hôtel → Mitaka (JR Chuo Line direct depuis Shinjuku, 30min)",
         "Matin (10h-13h)": [
-          "Musée Ghibli (navette depuis Mitaka Station, vérifier les horaires)",
-          "Parc Inokashira"
-        ],
-        "Notes": [
-          "Réservation Ghibli OBLIGATOIRE 3 mois à l'avance",
-          "Prix: 1000¥ adulte",
-          "Site officiel pour réservation: ghibli-museum.jp"
+            "Parc Inokashira",
+            "Parc Koganei"
         ],
         "Déjeuner (13h-14h30)": "Restaurant près du parc",
         "Après-midi (14h30-18h)": {
@@ -568,7 +565,7 @@ const cityData = {
   },
 fuji: {
     title: "Mont Fuji & Kawaguchiko 21-23 mai",
-    "link":"https://www.hpdsp.net/konansou/en/hw/hwp3200/hww3201init.do?screenId=HWW3201&yadNo=386712&planCd=L1790002&roomTypeCd=0341257&planListNumPlan=5_1_1&room_number=1&roomCountBkup=1&adultNumBkup=3&browserBack=1&adultNum=3&dateUndecidedBkup=1&calYear=2025&calMonth=04&roomCrack=300000&roomCrackBkup=300000&calOpenFlg=1&stayCount=2&roomCount=1#price_cal",
+    "link":"https://www.booking.com/hotel/jp/konanso.fr.html",
     days: {
         21: {
             "Transport": {
@@ -644,7 +641,7 @@ fuji: {
 },
 kyoto: {
     title: "Kyoto 23-29 mai (700€)",
-    "link": "https://www.booking.com/hotel/jp/sakura-urushitei.fr.html",
+    "link": "https://www.booking.com/hotel/jp/rinn-shijo-nishinotoin.fr.html",
     days: {
         23: {
             "Transport": {
@@ -755,18 +752,21 @@ kyoto: {
                 ],
                 "Notes": "Prévoir eau et snacks, peu de magasins en montant"
             },
-            "Matin (7h-11h)": {
+            "Matin (7h-10h30)": {
                 "7h00": "Départ vers Fushimi Inari (moins de monde)",
-                "7h15-11h00": "Fushimi Inari-taisha (gratuit, 2-3h pour montée partielle)",
+                "7h15-9h15": "Fushimi Inari-taisha - montée jusqu'à Yotsutsuji (gratuit)",
+                "9h15-10h00": "Exploration du bas du temple et boutiques",
+                "10h00-10h30": "Pause café/thé dans les environs"
             },
-            "Déjeuner (11h-12h30)": "Restaurant près du temple (spécialités Inari Sushi)",
-            "Après-midi (13h-17h)": {
-                "Transport": "Keihan Line vers Kiyomizu-Gojo (20min)",
-                "Activités": [
-                    "Ghibli shop (Kiyomizu-Gojo)",
-                    "Marche vers Kiyomizu-dera (15min en montée)",
-                    "Kiyomizu-dera (entrée 400¥)"
-                ]
+            "Déjeuner (10h30-12h)": {
+                "10h30-11h00": "Transport vers Kiyomizu-Gojo",
+                "11h00-12h00": "Déjeuner plus tôt (moins d'attente dans les restaurants)"
+            },
+            "Après-midi (12h-17h)": {
+                "12h00-12h30": "Ghibli shop (Kiyomizu-Gojo)",
+                "12h30-12h45": "Marche vers Kiyomizu-dera",
+                "12h45-15h30": "Kiyomizu-dera (entrée 400¥) et environs",
+                "15h30-17h00": "Balade dans les rues de Higashiyama"
             },
             "Soir (17h-21h)": {
                 "Transport": "15 min à pied",
@@ -778,10 +778,10 @@ kyoto: {
                 "Kiyomizu-Gojo Station (Keihan Line)"
             ],
             "Budget": {
-              "Transport": "150¥ (Keihan Line) ou gratuit avec JR Pass",
-              "Activités": "400¥ (Kiyomizu-dera)",
-              "Déjeuner": "2000-3000¥",
-              "Dîner": "3000-4000¥"
+                "Transport": "150¥ (Keihan Line) ou gratuit avec JR Pass",
+                "Activités": "400¥ (Kiyomizu-dera)",
+                "Déjeuner": "2000-3000¥",
+                "Dîner": "3000-4000¥"
             }
         },
         27: {
@@ -845,32 +845,51 @@ himeji: {
             "Transport": {
                 "Options": [
                     "Shinkansen depuis Kyoto (JR Pass valide):",
-                    "- Hikari: 30min (meilleure option)"
+                    "- Hikari: 30min pour Kyoto → Himeji",
+                    "- Local: 20min pour Himeji → Kobe",
+                    "- Local: 20min pour Kobe → Osaka"
                 ],
                 "Notes": "Départ depuis Kyoto Station avec bagages (consigne à Himeji)"
             },
-            "Matin (8h-12h)": {
-                "8h00": "Départ de Kyoto",
-                "8h30": "Arrivée et dépôt bagages à Himeji Station",
-                "9h00-12h00": "Château Himeji et jardins Koko-en"
+            "Matin (7h30-12h)": {
+                "7h30": "Départ de Kyoto",
+                "8h00": "Arrivée et dépôt bagages à Himeji Station",
+                "8h30-11h30": "Château Himeji et jardins Koko-en",
+                "11h30-12h00": "Récupération bagages et train pour Kobe"
             },
-            "Déjeuner (12h-13h30)": "Restaurant dans la rue commerçante Miyuki-dori",
-            "Après-midi (13h30-16h)": {
-                "Transport": "Shinkansen Himeji → Osaka (30min)",
-                "Activités": "Installation hôtel Osaka"
+            "Déjeuner (12h-14h30)": {
+                "12h00-12h20": "Trajet Himeji → Kobe",
+                "12h30-14h30": "Déjeuner Kobe beef dans le quartier de Sannomiya"
             },
-            "Soir (16h-21h)": "Exploration Dotonbori et dîner",
-            "Quartier": "Himeji → Osaka",
+            "Après-midi (14h30-19h30)": {
+                "14h30-15h00": "Balade dans Nankin-machi (Chinatown) et snacks",
+                "15h00-15h15": "Marche jusqu'à Shin-Kobe Station",
+                "15h15-17h30": "Funiculaire et visite du Jardin botanique Nunobiki",
+                "17h30-19h30": "Coucher de soleil et illuminations au port de Kobe/Harborland"
+            },
+            "Soir (19h30-21h)": {
+                "19h30-20h00": "Train Kobe → Osaka",
+                "20h00-20h30": "Installation Airbnb",
+                "20h30-21h00": "Course rapide au konbini si besoin"
+            },
+            "Quartier": "Himeji → Kobe → Osaka",
             "Stations": [
                 "Himeji Station (matin)",
-                "Osaka/Umeda Station (après-midi)"
+                "Kobe/Sannomiya Station (midi)",
+                "Shin-Kobe Station (après-midi)",
+                "Osaka Station (soir)"
+            ],
+            "Notes": [
+                "Le Nunobiki Herb Gardens ferme à 17h00 (dernière montée en funiculaire à 16h30)",
+                "Harborland est particulièrement beau au coucher du soleil",
+                "Possibilité d'étendre la visite de Kobe jusqu'à 21h00 si souhaité"
             ]
         }
     }
 },
 "osaka": {
         "title": "Osaka 29 mai-02 juin (410€)",
-         "link": "https://www.booking.com/hotel/jp/mori-apartment-dao-dun-ku-dotonbori-2dk.fr.html",
+         "link": "https://www.booking.com/hotel/jp/everyday-house-ri-ben-qiao-osaka.fr.html",
         "days": {
             "30": {
                 "Transport": {
@@ -881,7 +900,7 @@ himeji: {
                 "Matin (9h-12h)": {
                     "Transport": "Métro vers Tanimachi 4-chome",
                     "Activités": [
-                        "Château d'Osaka (entrée 600¥)",
+                        "Château d'Osaka (pas besoin de rentrer dans le château)",
                         "Parc du château",
                         "Option: Musée du château"
                     ]
@@ -921,7 +940,8 @@ himeji: {
                     "Activités": [
                         "Minoh Park",
                         "Cascade de Minoo",
-                        "Spécialité: Momiji tempura"
+                        "Spécialité: Momiji tempura",
+                        "Cupnoodles Museum"
                     ]
                 },
                 "Déjeuner (12h-13h30)": "Restaurant local près de la cascade",
@@ -929,7 +949,8 @@ himeji: {
                     "Transport": "Métro vers Dobutsuen-mae",
                     "Activités": [
                         "Shinsekai exploration",
-                        "Tour Tsutenkaku (700¥)"
+                        "Tour Tsutenkaku (700¥)",
+                        "Asahi Beer Museum"
                     ]
                 },
                 "Soir (17h-21h)": {
@@ -1027,7 +1048,8 @@ tokyo2: {
                     "Souvenirs": [
                         "Tokyo Station - Character Street",
                         "Asakusa - Nakamise Shopping Street",
-                        "Stations: Tokyo ou Asakusa (Metro)"
+                        "Stations: Tokyo ou Asakusa (Metro)",
+                        "Musée Ghibli (navette depuis Mitaka Station, vérifier les horaires)",
                     ],
                     "Tax-Free": [
                         "Don Quijote (nombreuses locations)",
@@ -1155,10 +1177,22 @@ tokyo2: {
       ]
     }
   };
+  const setupStatusBar = async () => {
+        try {
+            StatusBar.setStyle({ style: Style.Dark });
+            // If you want more space at the top:
+            StatusBar.setOverlaysWebView({ overlay: false });
+        } catch (e) {
+            // Handle web environment where plugin is not available
+            console.log('Status bar plugin not available');
+        }
+    };
+
+    setupStatusBar();
 
   return (
-    <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">Itinéraire Japon 21 jours</h1>
+   <div className="pt-10 px-4 bg-white min-h-screen flex flex-col">
+       <h1 className="text-2xl font-bold mt-safe">Itinéraire 21 jours</h1>
       
       <div className="flex flex-wrap gap-2 mb-6">
         <Tab
